@@ -26,15 +26,16 @@ define(['itemContextMenu', 'loading', './../skininfo', 'datetime', 'playbackMana
             var url = Emby.Models.logoImageUrl(item, {});
 
             if (item.Type === 'BoxSet') {
-                Emby.Page.setTitle(item.Name);
+                Emby.Page.setTitle('');
             }
             else if (url) {
 
-                var pageTitle = document.querySelector('.pageTitle');
-                pageTitle.style.backgroundImage = "url('" + url + "')";
-                pageTitle.classList.add('pageTitleWithLogo');
-                pageTitle.innerHTML = '';
-                document.querySelector('.headerLogo').classList.add('hide');
+                //var pageTitle = document.querySelector('.pageTitle');
+                //pageTitle.style.backgroundImage = "url('" + url + "')";
+                //pageTitle.classList.add('pageTitleWithLogo');
+                //pageTitle.innerHTML = '';
+                //document.querySelector('.headerLogo').classList.add('hide');
+                Emby.Page.setTitle('');
             } else {
                 Emby.Page.setTitle('');
             }
@@ -88,6 +89,50 @@ define(['itemContextMenu', 'loading', './../skininfo', 'datetime', 'playbackMana
                 itemTitle.classList.add('albumTitle');
             } else {
                 itemTitle.classList.remove('albumTitle');
+            }
+        }
+
+        function logoImageUrl(item, apiClient, options) {
+
+            options = options || {};
+            options.type = "Logo";
+
+            if (item.ImageTags && item.ImageTags.Logo) {
+
+                options.tag = item.ImageTags.Logo;
+                return apiClient.getScaledImageUrl(item.Id, options);
+            }
+
+            if (item.ParentLogoImageTag) {
+                options.tag = item.ParentLogoImageTag;
+                return apiClient.getScaledImageUrl(item.ParentLogoItemId, options);
+            }
+
+            return null;
+        }
+
+        function renderLogo(view, item, apiClient) {
+
+            var url = logoImageUrl(item, apiClient, {
+                maxWidth: 300
+            });
+
+            var detailLogo = view.querySelector('.detailLogo');
+
+            if (url) {
+                detailLogo.classList.remove('hide');
+                detailLogo.classList.add('lazy');
+                detailLogo.setAttribute('data-src', url);
+                imageLoader.lazyImage(detailLogo);
+
+                //if (detailLogo.animate) {
+                //    setTimeout(function() {
+                //        bounceIn(detailLogo);
+                //    }, 100);
+                //}
+
+            } else {
+                detailLogo.classList.add('hide');
             }
         }
 
@@ -898,10 +943,6 @@ define(['itemContextMenu', 'loading', './../skininfo', 'datetime', 'playbackMana
 
             var people = item.People || [];
 
-            people = people.filter(function (p) {
-                return p.PrimaryImageTag;
-            });
-
             people.length = Math.min(people.length, 32);
 
             if (!people.length) {
@@ -1281,8 +1322,8 @@ define(['itemContextMenu', 'loading', './../skininfo', 'datetime', 'playbackMana
                     // If it's a person, leave the backdrop image from wherever we came from
                     if (item.Type !== 'Person') {
                         backdrop.setBackdrops([item], {
-                            blur: 16
-                        }, false);
+                            blur: 10
+                        });
                         setTitle(item);
                     }
 
@@ -1292,6 +1333,7 @@ define(['itemContextMenu', 'loading', './../skininfo', 'datetime', 'playbackMana
                         renderName(view, item);
                         renderParentName(view, item);
                         renderImage(view, item);
+                        renderLogo(view, item, apiClient);
                         renderChildren(view, item);
                         renderDetails(self, view, item, user);
                         renderMediaInfoIcons(view, item);

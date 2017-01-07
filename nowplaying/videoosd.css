@@ -47,6 +47,7 @@
         height: 22vh;
         opacity: .2;
         border-color: black;
+        display: none;
     }
 
 .videoOsdBottom {
