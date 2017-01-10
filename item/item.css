@@ -20,7 +20,6 @@
 }
 
 .itemPageLeft {
-    max-width: 40%;
     padding-right: 1.7em;
 }
 
@@ -53,10 +52,6 @@
     display: none;
 }
 
-.miniMainSection .itemPageLeft {
-    max-width: 20%;
-}
-
 .seasonMainSection .itemPageMain {
     text-align: center;
 }
@@ -84,10 +79,6 @@
 
 .mainSection .itemPageButtons {
     margin-right: 1em;
-}
-
-.itemPageUserDataIcons .fab {
-    padding: .35em;
 }
 
 .itemPageUserDataIcons button + button {
@@ -122,8 +113,8 @@
     }
 
 .detailImage {
-    min-width: 50%;
-    max-width: 100%;
+    min-width: 20vw;
+    max-width: 36vw;
     min-height: 30vh;
     max-height: 67vh;
     box-shadow: 0 0 1.85vh #000;
@@ -195,4 +186,41 @@
 
 .parentNameDivider {
     margin: 0 .25em;
+}
+
+.itemVerticalScrollSlider {
+    /* Needed to position the logo */
+    position: relative;
+}
+
+.detailLogo {
+    width: 13vw;
+    height: 3vw;
+    position: absolute;
+    top: 8.5%;
+    right: 7%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+@media all and (max-width: 1400px) {
+
+    .detailLogo {
+        right: 5%;
+    }
+}
+
+@media all and (max-width: 1200px) {
+
+    .detailLogo {
+        right: 2%;
+    }
+}
+
+@media all and (max-width: 1100px) {
+
+    .detailLogo {
+        display: none;
+    }
 }

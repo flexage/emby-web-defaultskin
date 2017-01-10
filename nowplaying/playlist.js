@@ -116,7 +116,7 @@ define(['playbackManager', 'scroller', 'loading', 'imageLoader', 'backdrop', 'li
 
             renderPlaylist();
 
-            onPlaybackStart(e, playbackManager.currentPlayer());
+            onPlaybackStart(e, playbackManager.getCurrentPlayer());
 
             if (!isRestored) {
                 createVerticalScroller(view, self);
