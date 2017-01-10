@@ -56,12 +56,14 @@ h1 {
 }
 
 .skinHeader {
+    /* TODO: Replace with real solution */
+    /*display: none !important;*/
     /* This will ensure it is on top of the main body */
     z-index: 1;
     /* padding-top: 3vh; */
     /* padding-bottom: 2.4vh; */
     display: flex;
-    align-items: center;
+    align-items: initial;
     position: fixed;
     top: 0;
     left: 0;
@@ -70,15 +72,16 @@ h1 {
 }
 
 .headerLeft {
+    display: none;
     margin-left: 2.3%;
     display: flex;
     align-items: center;
 }
 
 .headerRight {
-    margin-right: 2.3%;
+    margin-right: 1%;
     display: flex;
-    align-items: center;
+    align-items: initial;
     flex-grow: 1;
     justify-content: flex-end;
 }
@@ -88,6 +91,8 @@ h1 {
     display: inline-block;
     vertical-align: middle;
     margin-left: 1em;
+    font-size: 3.65vw;
+    font-weight: 200;
 }
 
 @media all and (max-width: 720px) {
@@ -106,24 +111,17 @@ h1 {
 }
 
 .pageContainer {
-    padding-top: 11vh;
+    padding-top: 0vh;
     overflow: hidden;
     contain: layout style;
 }
 
     .pageContainer.flex {
-        padding-top: 11vh;
+        padding-top: 0vh;
         overflow: hidden;
         display: -webkit-flex;
         display: flex;
-        contain: strict;
-    }
-
-    .pageContainer.flex {
-        padding-top: 11vh;
-        overflow: hidden;
-        display: -webkit-flex;
-        display: flex;
+        flex-direction: row;
         contain: strict;
     }
 
@@ -150,11 +148,11 @@ h1 {
 }
 
 .itemScrollFrame.scrollFrameX .scrollSlider {
-    padding-left: 4.5%;
+    padding-left: 0;
 }
 
 .userViewNames {
-    padding-left: 3.75%;
+    padding: 0;
 }
 
 .itemScrollFrame.scrollFrameX {
@@ -162,18 +160,19 @@ h1 {
 }
 
     .itemScrollFrame.scrollFrameX .scrollSlider {
-        padding-bottom: 3vh;
-        padding-top: 3vh;
+        padding-bottom: 0vh;
+        padding-top: 0vh;
     }
 
     .itemScrollFrame.scrollFrameX.noTopPadding .scrollSlider {
-        padding-top: 2.74vh;
+        padding-top: 0vh;
     }
 
 .itemScrollFrame.scrollFrameY {
     height: 100%;
     /* Needed for native scroll */
     display: flex;
+    padding-left: 3.5vw;
 }
 
 .scrollFrameY > .scrollSlider {
@@ -216,6 +215,7 @@ h1 {
 .cardColumn {
     display: inline-block;
     vertical-align: top;
+    margin-right: 3vw;
 }
 
     .cardColumn .card:not(.hide) {
@@ -229,11 +229,12 @@ h1 {
 }
 
 .userViewNames .btnUserViewHeader {
-    min-width: initial;
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0px 0 34px 10px;
     text-transform: none !important;
-    margin-top: 0;
-    padding-top: 0;
-    padding-bottom: .2em;
+    text-align: left;
 }
 
 .listNumbers {
@@ -363,8 +364,10 @@ i.mediaInfoItem {
 }
 
 .homePageContent .portraitCard .cardImageContainer {
-    width: 21.94vh;
-    height: 32.96vh;
+    /*width: 21.94vh;
+    height: 32.96vh;*/
+    width: 26vh;
+    height: 38.5vh;
 }
 
 .listPageContent .squareCard:not(.scalableCard) .cardImageContainer {

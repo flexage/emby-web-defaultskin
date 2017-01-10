@@ -1,9 +1,9 @@
-define(['connectionManager', 'loading', './../components/tabbedpage', 'backdrop', 'focusManager', 'playbackManager', './../skininfo', 'events'], function (connectionManager, loading, tabbedPage, backdrop, focusManager, playbackManager, skinInfo, events) {
+define(['connectionManager', 'loading', './../components/tabbedpagevertical', 'backdrop', 'focusManager', 'playbackManager', './../skininfo', 'events'], function (connectionManager, loading, tabbedPageVertical, backdrop, focusManager, playbackManager, skinInfo, events) {
     'use strict';
 
     function loadViewHtml(page, parentId, html, viewName, autoFocus, self) {
 
-        var homeScrollContent = page.querySelector('.contentScrollSlider');
+        var homeScrollContent = page.querySelector('.viewContentArea');
 
         html = html;
         homeScrollContent.innerHTML = Globalize.translateDocument(html, skinInfo.id);
@@ -145,8 +145,8 @@ define(['connectionManager', 'loading', './../components/tabbedpage', 'backdrop'
 
         view.addEventListener('viewdestroy', function () {
 
-            if (self.tabbedPage) {
-                self.tabbedPage.destroy();
+            if (self.tabbedPageVertical) {
+                self.tabbedPageVertical.destroy();
             }
             if (self.tabView) {
                 self.tabView.destroy();
@@ -160,7 +160,7 @@ define(['connectionManager', 'loading', './../components/tabbedpage', 'backdrop'
             var apiClient = connectionManager.currentApiClient();
             apiClient.getUserViews({}, apiClient.getCurrentUserId()).then(function (result) {
 
-                var tabbedPageInstance = new tabbedPage(view, {
+                var tabbedPageInstance = new tabbedPageVertical(view, {
                     handleFocus: true
                 });
                 tabbedPageInstance.loadViewContent = loadViewContent;

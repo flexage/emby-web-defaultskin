@@ -16,9 +16,9 @@ define(['loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper',
 
         var userViewNames = view.querySelector('.userViewNames');
 
-        userViewNames.classList.add('smoothScrollX');
+        userViewNames.classList.add('smoothScrollY');
         userViewNames.classList.add('focusable');
-        userViewNames.classList.add('focuscontainer-x');
+        userViewNames.classList.add('focuscontainer-y');
         userViewNames.style.scrollBehavior = 'smooth';
         userViewNames.focus = focusViewSlider;
 
@@ -78,9 +78,9 @@ define(['loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper',
 
         var btn = page.querySelector(".btnUserViewHeader[data-id='" + id + "']");
 
-        self.bodyScroller.slideTo(0, true);
+        // self.bodyScroller.slideTo(0, true);
 
-        var contentScrollSlider = page.querySelector('.contentScrollSlider');
+        var contentScrollSlider = page.querySelector('.viewContentArea');
         contentScrollSlider.innerHTML = '';
         var promise = self.loadViewContent.call(self, page, id, btn.getAttribute('data-type'));
 
@@ -101,14 +101,16 @@ define(['loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper',
         elem.animate(keyframes, timing);
     }
 
-    function tabbedPage(page, pageOptions) {
+    function tabbedPageVertical(page, pageOptions) {
 
         var self = this;
         pageOptions = pageOptions || {};
 
+        console.log('pageOptions', pageOptions);
+
         // lock the height so that the location of the top tabs won't fluctuate
-        var contentScrollSlider = page.querySelector('.contentScrollSlider');
-        contentScrollSlider.classList.add('focuscontainer-x');
+        var contentScrollSlider = page.querySelector('.viewContentArea');
+        contentScrollSlider.classList.add('focuscontainer-y');
 
         var selectedItemInfoElement = page.querySelector('.selectedItemInfo');
         var selectedIndexElement = page.querySelector('.selectedIndex');
@@ -119,12 +121,13 @@ define(['loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper',
 
             page.querySelector('.userViewNames').innerHTML = tabs.map(function (i) {
 
-                return '<' + tagName + ' is="emby-button" class="flat btnUserViewHeader button-flat" data-id="' + i.Id + '" data-type="' + (i.CollectionType || '') + '"><h3 class="userViewButtonText">' + i.Name + '</h3></' + tagName + '>';
+                return '<' + tagName + ' is="emby-button" class="flat btnUserViewHeader button-flat violet" data-id="' + i.Id + '" data-type="' + (i.CollectionType || '') + '"><h3 class="userViewButtonText">' + i.Name + '</h3></' + tagName + '>';
 
             }).join('');
 
             createHeaderScroller(page, self, initialTabId);
-            createHorizontalScroller(page);
+            //createHorizontalScroller(page);
+            console.log('page', page);
             initEvents(page, self);
         };
 
@@ -219,33 +222,33 @@ define(['loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper',
             focusDelay = 700;
         };
 
-        function createHorizontalScroller(view) {
-
-            var scrollFrame = view.querySelector('.itemScrollFrame');
-
-            var options = {
-                horizontal: 1,
-                itemNav: 0,
-                mouseDragging: 1,
-                touchDragging: 1,
-                slidee: view.querySelector('.contentScrollSlider'),
-                itemSelector: '.card',
-                smart: true,
-                releaseSwing: true,
-                scrollBy: 200,
-                speed: 300,
-                immediateSpeed: pageOptions.immediateSpeed,
-                elasticBounds: 1,
-                dragHandle: 1,
-                dynamicHandle: 1,
-                clickBar: 1,
-                scrollWidth: 500000
-            };
-
-            self.bodyScroller = new scroller(scrollFrame, options);
-            self.bodyScroller.init();
-            initFocusHandler(view, self.bodyScroller);
-        }
+        // function createHorizontalScroller(view) {
+        //
+        //     var scrollFrame = view.querySelector('.itemScrollFrame');
+        //
+        //     var options = {
+        //         horizontal: 1,
+        //         itemNav: 0,
+        //         mouseDragging: 1,
+        //         touchDragging: 1,
+        //         slidee: view.querySelector('.contentScrollSlider'),
+        //         itemSelector: '.card',
+        //         smart: true,
+        //         releaseSwing: true,
+        //         scrollBy: 200,
+        //         speed: 300,
+        //         immediateSpeed: pageOptions.immediateSpeed,
+        //         elasticBounds: 1,
+        //         dragHandle: 1,
+        //         dynamicHandle: 1,
+        //         clickBar: 1,
+        //         scrollWidth: 500000
+        //     };
+        //
+        //     self.bodyScroller = new scroller(scrollFrame, options);
+        //     self.bodyScroller.init();
+        //     initFocusHandler(view, self.bodyScroller);
+        // }
 
         function initFocusHandler(view) {
 
@@ -281,5 +284,5 @@ define(['loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper',
         };
     }
 
-    return tabbedPage;
+    return tabbedPageVertical;
 });

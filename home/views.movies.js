@@ -1,4 +1,4 @@
-define(['./spotlight', 'imageLoader', 'focusManager', 'cardBuilder', './../skininfo', 'emby-itemscontainer'], function (spotlight, imageLoader, focusManager, cardbuilder, skinInfo) {
+define(['./spotlight', 'scroller', 'imageLoader', 'focusManager', 'cardBuilder', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (spotlight, scroller, imageLoader, focusManager, cardbuilder, tile, skinInfo) {
     'use strict';
 
     function loadResume(element, parentId) {
@@ -18,9 +18,8 @@ define(['./spotlight', 'imageLoader', 'focusManager', 'cardBuilder', './../skini
             cardbuilder.buildCards(result.Items, {
                 parentContainer: section,
                 itemsContainer: section.querySelector('.itemsContainer'),
-                shape: 'backdrop',
-                rows: 3,
-                preferThumb: true,
+                shape: 'portrait',
+                rows: 1,
                 scalable: false
             });
         });
@@ -31,7 +30,7 @@ define(['./spotlight', 'imageLoader', 'focusManager', 'cardBuilder', './../skini
         var options = {
 
             IncludeItemTypes: "Movie",
-            Limit: 12,
+            Limit: 30,
             ParentId: parentId,
             EnableImageTypes: "Primary,Backdrop,Thumb"
         };
@@ -44,7 +43,7 @@ define(['./spotlight', 'imageLoader', 'focusManager', 'cardBuilder', './../skini
                 parentContainer: section,
                 itemsContainer: section.querySelector('.itemsContainer'),
                 shape: 'portrait',
-                rows: 2,
+                rows: 1,
                 scalable: false
             });
         });
@@ -159,13 +158,51 @@ define(['./spotlight', 'imageLoader', 'focusManager', 'cardBuilder', './../skini
             };
 
             if (items.length > 0) {
-                element.querySelector('.movieFavoritesCard .cardImage').style.backgroundImage = "url('" + Emby.Models.backdropImageUrl(items[0], imgOptions) + "')";
+                //element.querySelector('.movieFavoritesCard .cardImage').style.backgroundImage = "url('" + Emby.Models.backdropImageUrl(items[0], imgOptions) + "')";
             }
 
             if (items.length > 1) {
-                element.querySelector('.allMoviesCard .cardImage').style.backgroundImage = "url('" + Emby.Models.backdropImageUrl(items[1], imgOptions) + "')";
+                //element.querySelector('.allMoviesCard .cardImage').style.backgroundImage = "url('" + Emby.Models.backdropImageUrl(items[1], imgOptions) + "')";
             }
         });
+    }
+
+    function initialiseScrollers() {
+      var scrollFrame = document.querySelector('.tilesSection');
+
+      var options = {
+        horizontal: 1,
+        itemNav: 0,
+        mouseDragging: 1,
+        touchDragging: 1,
+        slidee: document.querySelector('.tilesContainer'),
+        itemSelector: '.tile',
+        smart: true,
+        releaseSwing: true,
+        scrollBy: 200,
+        speed: 300,
+        immediateSpeed: 1,
+        elasticBounds: 1,
+        dragHandle: 1,
+        dynamicHandle: 1,
+        clickBar: 1,
+        scrollWidth: 500000
+      };
+
+      self.tilesScroller = new scroller(scrollFrame, options);
+      self.tilesScroller.init();
+      //initFocusHandler(view, self.bodyScroller);
+    }
+
+    function parentWithClass(elem, className) {
+        while (!elem.classList || !elem.classList.contains(className)) {
+            elem = elem.parentNode;
+            if (!elem) {
+                return null;
+            }
+        }
+
+        return elem;
     }
 
     function view(element, apiClient, parentId, autoFocus) {
@@ -177,6 +214,76 @@ define(['./spotlight', 'imageLoader', 'focusManager', 'cardBuilder', './../skini
         }
 
         self.loadData = function (isRefresh) {
+
+            var tileOptions = {
+              target: ".tilesContainer",
+              items: [
+                {
+                  title: Globalize.translate('Genres'),
+                  link: 'movies/movies.html?tab=genres&parentid=' + parentId
+                },
+                {
+                  title: Globalize.translate('Years'),
+                  link: 'movies/movies.html?tab=years&parentid=' + parentId
+                },
+                {
+                  title: Globalize.translate('Unwatched'),
+                  link: 'movies/movies.html?tab=unwatched&parentid=' + parentId
+                },
+                {
+                  title: Globalize.translate('Collections'),
+                  link: 'movies/movies.html?tab=collections&parentid=' + parentId
+                },
+                {
+                  title: Globalize.translate('TopRated'),
+                  link: 'movies/movies.html?tab=toprated&parentid=' + parentId
+                },
+                {
+                  title: Globalize.translate('Favorites'),
+                  link: 'movies/movies.html?tab=favorites&parentid=' + parentId
+                },
+                {
+                  title: Globalize.translate('Genres'),
+                  link: 'movies/movies.html?tab=genres&parentid=' + parentId
+                },
+                {
+                  title: Globalize.translate('Years'),
+                  link: 'movies/movies.html?tab=years&parentid=' + parentId
+                },
+                {
+                  title: Globalize.translate('Unwatched'),
+                  link: 'movies/movies.html?tab=unwatched&parentid=' + parentId
+                },
+                {
+                  title: Globalize.translate('Collections'),
+                  link: 'movies/movies.html?tab=collections&parentid=' + parentId
+                },
+                {
+                  title: Globalize.translate('TopRated'),
+                  link: 'movies/movies.html?tab=toprated&parentid=' + parentId
+                },
+                {
+                  title: Globalize.translate('Favorites'),
+                  link: 'movies/movies.html?tab=favorites&parentid=' + parentId
+                }
+              ]
+            };
+
+            tile(tileOptions);
+
+            var tileElems = document.querySelectorAll('.tile');
+
+            for(var tileEl of tileElems) {
+              tileEl.addEventListener('click', function (e) {
+                var el = parentWithClass(e.target, 'tile');
+                Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, el.getAttribute('data-link')));
+              });
+            }
+
+            // element.querySelectorAll('.tile').addEventListener('click', function (e) {
+            //   console.log('tile clicked, e', e);
+            //   //Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + parentId));
+            // });
 
             var promises = [
                 loadResume(element, parentId),
@@ -192,17 +299,20 @@ define(['./spotlight', 'imageLoader', 'focusManager', 'cardBuilder', './../skini
         loadSpotlight(self, element, parentId);
         loadImages(element, parentId);
 
-        element.querySelector('.allMoviesCard').addEventListener('click', function () {
-            Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + parentId));
-        });
 
-        element.querySelector('.movieCollectionsCard').addEventListener('click', function () {
-            Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?tab=collections&parentid=' + parentId));
-        });
+        initialiseScrollers();
 
-        element.querySelector('.movieFavoritesCard').addEventListener('click', function () {
-            Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?tab=favorites&parentid=' + parentId));
-        });
+        // element.querySelector('.allMoviesCard').addEventListener('click', function () {
+        //     Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + parentId));
+        // });
+        //
+        // element.querySelector('.movieCollectionsCard').addEventListener('click', function () {
+        //     Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?tab=collections&parentid=' + parentId));
+        // });
+        //
+        // element.querySelector('.movieFavoritesCard').addEventListener('click', function () {
+        //     Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?tab=favorites&parentid=' + parentId));
+        // });
 
         self.destroy = function () {
             if (self.spotlight) {

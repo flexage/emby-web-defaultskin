@@ -33,3 +33,15 @@ html.layout-tv {
 .layout-tv h3 {
     font-size: 3vh;
 }
+
+.panel-left .userViewNames {
+  margin-top: 17vh;
+}
+
+.panel-left .userViewNames h3 {
+  font-size: 4vh;
+}
+
+.homePageContainer .verticalSection {
+  margin-bottom: 1vh;
+}

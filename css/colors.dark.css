@@ -124,23 +124,16 @@ a {
     color: #bbb !important;
 }
 
-.userViewNames button:focus {
-    color: #52B54B !important;
+
+/* TODO: Create colour palette */
+.userViewNames button.violet:focus {
+    color: violet !important;
     opacity: 1;
 }
 
-    .userViewNames button:focus .userViewButtonText {
-        border-bottom-color: #52B54B;
-    }
-
-.userViewNames button:focus {
-    color: #52B54B !important;
-    opacity: 1;
+.userViewNames button:focus .userViewButtonText {
+    border-bottom-color: transparent;
 }
-
-    .userViewNames button:focus .userViewButtonText {
-        border-bottom-color: #52B54B;
-    }
 
 .selectedItemSecondaryInfo {
     color: #ddd !important;

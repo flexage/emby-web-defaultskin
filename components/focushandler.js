@@ -204,7 +204,7 @@ define(['imageLoader', 'itemHelper', 'backdrop', 'mediaInfo', 'focusManager', 's
                         if (options.enableBackdrops) {
                             // The focus backdrops are too slow on xbox
                             if (!browser.slow && !browser.edge) {
-                                //backdrop.setBackdrop(item);
+                                backdrop.setBackdrop(item);
                             }
                         }
                         setSelectedInfo(card, item);

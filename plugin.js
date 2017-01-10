@@ -88,13 +88,13 @@ define(['playbackManager', 'pluginManager', 'browser', 'connectionManager', 'eve
             var icons = 'material-icons';
 
             routes.push({
-                path: 'home.html',
+                path: 'homevert.html',
                 transition: 'slide',
                 type: 'home',
-                controller: self.id + '/home/home',
+                controller: self.id + '/home/homevert',
                 dependencies: [
                     'cardStyle',
-                    'css!' + pluginManager.mapPath(self, 'home/home.css'),
+                    'css!' + pluginManager.mapPath(self, 'home/homevert.css'),
                     icons
                 ]
             });
