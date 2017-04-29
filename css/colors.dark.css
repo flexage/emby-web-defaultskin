@@ -12,7 +12,7 @@ a {
     a:focus {
         background: #52B54B;
         color: #fff;
-        transform: scale(1.16);
+        transform: scale(3);
         padding-left: .3em;
         padding-right: .3em;
         border-radius: .15em;
@@ -23,7 +23,7 @@ a {
     }
 
 .backgroundContainer {
-    background: #181818;
+    /*background: #181818;*/
 }
 
     .backgroundContainer.withBackdrop {
@@ -65,8 +65,9 @@ a {
 }
 
 .card:focus:not(.card-round) .cardBox {
-    border-color: #52B54B;
-    /*border-color: rgba(0, 0, 0, .6);*/
+    /*border-color: #52B54B;*/
+    border-width: 0;
+    border-color: rgba(0, 0, 0, 0);
 }
 
 .card[data-cardtype='embyconnect'] .cardImageContainer {
@@ -79,7 +80,7 @@ a {
 
 
 .userViewNames button {
-    opacity: .25;
+    opacity: 1;
 }
 
 .userViewButtonText {
@@ -90,6 +91,31 @@ a {
     color: inherit;
     opacity: 1;
 }
+
+.userViewNames button h3 {
+  width: 100%;
+  margin: 0;
+  padding: 7px;
+  color: #fff;
+}
+
+.userViewNames button h3 i {
+  color: #555 !important;
+}
+
+.userViewNames button.selected h3 {
+  background-color: #167996;
+}
+
+.userViewNames button.selected h3 i {
+  color: #fff !important;
+}
+
+.userViewNames button.selected h3 i {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff !important;
+}
+
 
 .dialog {
     background-color: rgba(20,20,20,1) !important;

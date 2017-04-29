@@ -1,4 +1,4 @@
-define(['./spotlight', 'scroller', 'imageLoader', 'focusManager', 'cardBuilder', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (spotlight, scroller, imageLoader, focusManager, cardbuilder, tile, skinInfo) {
+define(['./spotlight', 'scroller', 'imageLoader', './../components/focusHandler', 'focusManager', 'cardBuilder', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (spotlight, scroller, imageLoader, focusHandler, focusManager, cardbuilder, tile, skinInfo) {
     'use strict';
 
     function loadResume(element, parentId) {
@@ -49,27 +49,27 @@ define(['./spotlight', 'scroller', 'imageLoader', 'focusManager', 'cardBuilder',
         });
     }
 
-    function loadSpotlight(instance, element, parentId) {
-
-        var options = {
-
-            SortBy: "Random",
-            IncludeItemTypes: "Movie",
-            Limit: 20,
-            Recursive: true,
-            ParentId: parentId,
-            EnableImageTypes: "Backdrop",
-            ImageTypes: "Backdrop",
-            Fields: "Taglines"
-        };
-
-        return Emby.Models.items(options).then(function (result) {
-
-            var card = element.querySelector('.wideSpotlightCard');
-
-            instance.spotlight = new spotlight(card, result.Items, 767);
-        });
-    }
+    // function loadSpotlight(instance, element, parentId) {
+    //
+    //     var options = {
+    //
+    //         SortBy: "Random",
+    //         IncludeItemTypes: "Movie",
+    //         Limit: 20,
+    //         Recursive: true,
+    //         ParentId: parentId,
+    //         EnableImageTypes: "Backdrop",
+    //         ImageTypes: "Backdrop",
+    //         Fields: "Taglines"
+    //     };
+    //
+    //     return Emby.Models.items(options).then(function (result) {
+    //
+    //         var card = element.querySelector('.wideSpotlightCard');
+    //
+    //         instance.spotlight = new spotlight(card, result.Items, 767);
+    //     });
+    // }
 
     function loadRecommendations(element, apiClient, parentId) {
 
@@ -99,7 +99,7 @@ define(['./spotlight', 'scroller', 'imageLoader', 'focusManager', 'cardBuilder',
 
         var cardsHtml = cardbuilder.getCardsHtml(recommendation.Items, {
             shape: 'portrait',
-            rows: 2,
+            rows: 1,
             scalable: false
         });
 
@@ -168,14 +168,15 @@ define(['./spotlight', 'scroller', 'imageLoader', 'focusManager', 'cardBuilder',
     }
 
     function initialiseScrollers() {
+      // Categories scroller
       var scrollFrame = document.querySelector('.tilesSection');
-
+      var slidee = scrollFrame.querySelector('.tilesContainer');
       var options = {
         horizontal: 1,
         itemNav: 0,
         mouseDragging: 1,
         touchDragging: 1,
-        slidee: document.querySelector('.tilesContainer'),
+        slidee: slidee,
         itemSelector: '.tile',
         smart: true,
         releaseSwing: true,
@@ -188,10 +189,86 @@ define(['./spotlight', 'scroller', 'imageLoader', 'focusManager', 'cardBuilder',
         clickBar: 1,
         scrollWidth: 500000
       };
-
       self.tilesScroller = new scroller(scrollFrame, options);
       self.tilesScroller.init();
-      //initFocusHandler(view, self.bodyScroller);
+      initFocusHandler(document, slidee, self.tilesScroller);
+
+
+      // Resume scroller
+      var scrollFrame = document.querySelector('.resumeSection');
+      var slidee = scrollFrame.querySelector('.itemsContainer');
+      var options = {
+        horizontal: 1,
+        itemNav: 0,
+        mouseDragging: 1,
+        touchDragging: 1,
+        slidee: slidee,
+        itemSelector: '.card',
+        smart: true,
+        releaseSwing: true,
+        scrollBy: 200,
+        speed: 300,
+        immediateSpeed: 1,
+        elasticBounds: 1,
+        dragHandle: 1,
+        dynamicHandle: 1,
+        clickBar: 1,
+        scrollWidth: 500000
+      };
+      self.resumeScroller = new scroller(scrollFrame, options);
+      self.resumeScroller.init();
+      initFocusHandler(document, slidee, self.resumeScroller);
+
+      // Latest scroller
+      var scrollFrame = document.querySelector('.latestSection');
+      var slidee = scrollFrame.querySelector('.itemsContainer');
+      var options = {
+        horizontal: 1,
+        itemNav: 0,
+        mouseDragging: 1,
+        touchDragging: 1,
+        slidee: slidee,
+        itemSelector: '.card',
+        smart: true,
+        releaseSwing: true,
+        scrollBy: 200,
+        speed: 300,
+        immediateSpeed: 1,
+        elasticBounds: 1,
+        dragHandle: 1,
+        dynamicHandle: 1,
+        clickBar: 1,
+        scrollWidth: 500000
+      };
+      self.latestScroller = new scroller(scrollFrame, options);
+      self.latestScroller.init();
+      initFocusHandler(document, slidee, self.latestScroller);
+    }
+
+    function initFocusHandler(view, slidee, scroller) {
+
+        //if (pageOptions.handleFocus) {
+
+            var scrollSlider = slidee;
+
+            var selectedItemInfoElement = view.querySelector('.selectedItemInfo');
+            var selectedIndexElement = view.querySelector('.selectedIndex');
+
+            self.focusHandler = new focusHandler({
+                parent: scrollSlider,
+                selectedItemInfoElement: selectedItemInfoElement,
+                selectedIndexElement: selectedIndexElement,
+                // animateFocus: pageOptions.animateFocus,
+                animateFocus: null,
+                scroller: scroller,
+                enableBackdrops: true,
+                zoomScale: 1.1
+            });
+        //}
+
+        document.querySelector('.tilesSection').style = 'overflow: visible !important;';
+        document.querySelector('.latestSection').style = 'overflow: visible !important;';
+        document.querySelector('.resumeSection').style = 'overflow: visible !important;';
     }
 
     function parentWithClass(elem, className) {
@@ -220,51 +297,37 @@ define(['./spotlight', 'scroller', 'imageLoader', 'focusManager', 'cardBuilder',
               items: [
                 {
                   title: Globalize.translate('Genres'),
-                  link: 'movies/movies.html?tab=genres&parentid=' + parentId
+                  link: 'movies/movies.html?tab=genres&parentid=' + parentId,
+                  // icon: '&#xE064;'
+                  icon: '&#xE8C9;'
                 },
                 {
                   title: Globalize.translate('Years'),
-                  link: 'movies/movies.html?tab=years&parentid=' + parentId
+                  link: 'movies/movies.html?tab=years&parentid=' + parentId,
+                  // icon: '&#xE916;'
+                  icon: '&#xE8DF;'
                 },
                 {
                   title: Globalize.translate('Unwatched'),
-                  link: 'movies/movies.html?tab=unwatched&parentid=' + parentId
+                  link: 'movies/movies.html?tab=unwatched&parentid=' + parentId,
+                  // icon: '&#xE04A;'
+                  icon: '&#xE8E7;'
                 },
                 {
                   title: Globalize.translate('Collections'),
-                  link: 'movies/movies.html?tab=collections&parentid=' + parentId
+                  link: 'movies/movies.html?tab=collections&parentid=' + parentId,
+                  // icon: '&#xE05F;'
+                  icon: '&#xE064;'
                 },
                 {
                   title: Globalize.translate('TopRated'),
-                  link: 'movies/movies.html?tab=toprated&parentid=' + parentId
+                  link: 'movies/movies.html?tab=toprated&parentid=' + parentId,
+                  icon: '&#xE8D0;'
                 },
                 {
                   title: Globalize.translate('Favorites'),
-                  link: 'movies/movies.html?tab=favorites&parentid=' + parentId
-                },
-                {
-                  title: Globalize.translate('Genres'),
-                  link: 'movies/movies.html?tab=genres&parentid=' + parentId
-                },
-                {
-                  title: Globalize.translate('Years'),
-                  link: 'movies/movies.html?tab=years&parentid=' + parentId
-                },
-                {
-                  title: Globalize.translate('Unwatched'),
-                  link: 'movies/movies.html?tab=unwatched&parentid=' + parentId
-                },
-                {
-                  title: Globalize.translate('Collections'),
-                  link: 'movies/movies.html?tab=collections&parentid=' + parentId
-                },
-                {
-                  title: Globalize.translate('TopRated'),
-                  link: 'movies/movies.html?tab=toprated&parentid=' + parentId
-                },
-                {
-                  title: Globalize.translate('Favorites'),
-                  link: 'movies/movies.html?tab=favorites&parentid=' + parentId
+                  link: 'movies/movies.html?tab=favorites&parentid=' + parentId,
+                  icon: '&#xE89A;'
                 }
               ]
             };
@@ -296,9 +359,8 @@ define(['./spotlight', 'scroller', 'imageLoader', 'focusManager', 'cardBuilder',
 
             return Promise.all(promises);
         };
-        loadSpotlight(self, element, parentId);
+        // loadSpotlight(self, element, parentId);
         loadImages(element, parentId);
-
 
         initialiseScrollers();
 

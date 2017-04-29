@@ -6,8 +6,8 @@ define(['loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper',
 
       var tilesHtml = '';
       for(var i in options.items) {
-        tilesHtml += '<button class="tile" data-link="' + options.items[i].link + '">';
-        tilesHtml += '<div><i class="md-icon">&#xE037;</i></div>';
+        tilesHtml += '<button class="tile tile-focustransform" data-link="' + options.items[i].link + '">';
+        tilesHtml += '<div><i class="md-icon">' + options.items[i].icon + '</i></div>';
         tilesHtml += '<div><span class="title">' + options.items[i].title + '</span></div>';
         tilesHtml += '</button>';
       }

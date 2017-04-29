@@ -117,11 +117,20 @@ define(['loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper',
 
         var tagName = 'button';
 
+        var icons = {};
+        icons.default = '&#xE037;';
+        icons.movies = '&#xE02C;';
+        icons.tvshows = '&#xE333;';
+        icons.livetv = '&#xE639;';
+        icons.homevideos = '&#xE3AF;';
+        icons.music = '&#xE32D;';
+        icons.photos = '&#xE412;';
+
         self.renderTabs = function (tabs, initialTabId) {
 
             page.querySelector('.userViewNames').innerHTML = tabs.map(function (i) {
 
-                return '<' + tagName + ' is="emby-button" class="flat btnUserViewHeader button-flat violet" data-id="' + i.Id + '" data-type="' + (i.CollectionType || '') + '"><h3 class="userViewButtonText">' + i.Name + '</h3></' + tagName + '>';
+                return '<' + tagName + ' is="emby-button" class="flat btnUserViewHeader button-flat violet" data-id="' + i.Id + '" data-type="' + (i.CollectionType || '') + '"><h3 class="userViewButtonText"><i class="md-icon">' + icons[i.CollectionType || 'default'] + '</i>' + i.Name + '</h3></' + tagName + '>';
 
             }).join('');
 

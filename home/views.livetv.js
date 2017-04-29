@@ -1,4 +1,4 @@
-define(['focusManager', 'cardBuilder', 'pluginManager', './../skininfo', 'browser', 'emby-itemscontainer'], function (focusManager, cardBuilder, pluginManager, skinInfo,  browser) {
+define(['focusManager', './../components/focusHandler', 'scroller', 'cardBuilder', './../components/tile', 'pluginManager', './../skininfo', 'browser', 'emby-itemscontainer'], function (focusManager, focusHandler, scroller, cardBuilder, tile, pluginManager, skinInfo,  browser) {
     'use strict';
 
     function loadLatestRecordings(element, apiClient) {
@@ -22,9 +22,9 @@ define(['focusManager', 'cardBuilder', 'pluginManager', './../skininfo', 'browse
                 showParentTitleOrTitle: true,
                 coverImage: true,
                 rows: {
-                    portrait: 2,
-                    square: 3,
-                    backdrop: 3
+                    portrait: 1,
+                    square: 1,
+                    backdrop: 1
                 },
                 scalable: false,
                 overlayText: true
@@ -53,9 +53,9 @@ define(['focusManager', 'cardBuilder', 'pluginManager', './../skininfo', 'browse
                 shape: 'backdrop',
                 coverImage: true,
                 rows: {
-                    portrait: 2,
-                    square: 3,
-                    backdrop: 3
+                    portrait: 1,
+                    square: 1,
+                    backdrop: 1
                 },
                 scalable: false
             });
@@ -76,9 +76,9 @@ define(['focusManager', 'cardBuilder', 'pluginManager', './../skininfo', 'browse
                 shape: shape || 'backdrop',
                 coverImage: true,
                 rows: {
-                    portrait: 2,
-                    square: 3,
-                    backdrop: 3
+                    portrait: 1,
+                    square: 1,
+                    backdrop: 1
                 },
                 scalable: false
             });
@@ -90,6 +90,225 @@ define(['focusManager', 'cardBuilder', 'pluginManager', './../skininfo', 'browse
         Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'livetv/livetv.html?tab=' + tab + '&serverId=' + serverId));
     }
 
+    function initialiseScrollers() {
+      console.log('initialiseScrollers() running');
+      // // Categories scroller
+      // var scrollFrame = document.querySelector('.tilesSection');
+      // var slidee = scrollFrame.querySelector('.tilesContainer');
+      // var options = {
+      //   horizontal: 1,
+      //   itemNav: 0,
+      //   mouseDragging: 1,
+      //   touchDragging: 1,
+      //   slidee: slidee,
+      //   itemSelector: '.tile',
+      //   smart: true,
+      //   releaseSwing: true,
+      //   scrollBy: 200,
+      //   speed: 300,
+      //   immediateSpeed: 1,
+      //   elasticBounds: 1,
+      //   dragHandle: 1,
+      //   dynamicHandle: 1,
+      //   clickBar: 1,
+      //   scrollWidth: 500000
+      // };
+      // self.tilesScroller = new scroller(scrollFrame, options);
+      // self.tilesScroller.init();
+      // initFocusHandler(document, slidee, self.tilesScroller);
+
+
+      // Latest recordings scroller
+      var scrollFrame = document.querySelector('.latestRecordingsSection');
+      var slidee = scrollFrame.querySelector('.itemsContainer');
+      var options = {
+        horizontal: 1,
+        itemNav: 0,
+        mouseDragging: 1,
+        touchDragging: 1,
+        slidee: slidee,
+        itemSelector: '.card',
+        smart: true,
+        releaseSwing: true,
+        scrollBy: 200,
+        speed: 300,
+        immediateSpeed: 1,
+        elasticBounds: 1,
+        dragHandle: 1,
+        dynamicHandle: 1,
+        clickBar: 1,
+        scrollWidth: 500000
+      };
+      self.latestScroller = new scroller(scrollFrame, options);
+      self.latestScroller.init();
+      initFocusHandler(document, slidee, self.latestScroller);
+
+      // Now playing scroller
+      var scrollFrame = document.querySelector('.nowPlayingSection');
+      var slidee = scrollFrame.querySelector('.itemsContainer');
+      var options = {
+        horizontal: 1,
+        itemNav: 0,
+        mouseDragging: 1,
+        touchDragging: 1,
+        slidee: slidee,
+        itemSelector: '.card',
+        smart: true,
+        releaseSwing: true,
+        scrollBy: 200,
+        speed: 300,
+        immediateSpeed: 1,
+        elasticBounds: 1,
+        dragHandle: 1,
+        dynamicHandle: 1,
+        clickBar: 1,
+        scrollWidth: 500000
+      };
+      self.nowPlayingScroller = new scroller(scrollFrame, options);
+      self.nowPlayingScroller.init();
+      initFocusHandler(document, slidee, self.nowPlayingScroller);
+
+      // Upcoming programs scroller
+      var scrollFrame = document.querySelector('.upcomingProgramsSection');
+      var slidee = scrollFrame.querySelector('.itemsContainer');
+      var options = {
+        horizontal: 1,
+        itemNav: 0,
+        mouseDragging: 1,
+        touchDragging: 1,
+        slidee: slidee,
+        itemSelector: '.card',
+        smart: true,
+        releaseSwing: true,
+        scrollBy: 200,
+        speed: 300,
+        immediateSpeed: 1,
+        elasticBounds: 1,
+        dragHandle: 1,
+        dynamicHandle: 1,
+        clickBar: 1,
+        scrollWidth: 500000
+      };
+      self.upcomingProgramsScroller = new scroller(scrollFrame, options);
+      self.upcomingProgramsScroller.init();
+      initFocusHandler(document, slidee, self.upcomingProgramsScroller);
+
+      // Upcoming movies scroller
+      var scrollFrame = document.querySelector('.upcomingMoviesSection');
+      var slidee = scrollFrame.querySelector('.itemsContainer');
+      var options = {
+        horizontal: 1,
+        itemNav: 0,
+        mouseDragging: 1,
+        touchDragging: 1,
+        slidee: slidee,
+        itemSelector: '.card',
+        smart: true,
+        releaseSwing: true,
+        scrollBy: 200,
+        speed: 300,
+        immediateSpeed: 1,
+        elasticBounds: 1,
+        dragHandle: 1,
+        dynamicHandle: 1,
+        clickBar: 1,
+        scrollWidth: 500000
+      };
+      self.upcomingMoviesScroller = new scroller(scrollFrame, options);
+      self.upcomingMoviesScroller.init();
+      initFocusHandler(document, slidee, self.upcomingMoviesScroller);
+
+      // Upcoming kids scroller
+      var scrollFrame = document.querySelector('.upcomingKidsSection');
+      var slidee = scrollFrame.querySelector('.itemsContainer');
+      var options = {
+        horizontal: 1,
+        itemNav: 0,
+        mouseDragging: 1,
+        touchDragging: 1,
+        slidee: slidee,
+        itemSelector: '.card',
+        smart: true,
+        releaseSwing: true,
+        scrollBy: 200,
+        speed: 300,
+        immediateSpeed: 1,
+        elasticBounds: 1,
+        dragHandle: 1,
+        dynamicHandle: 1,
+        clickBar: 1,
+        scrollWidth: 500000
+      };
+      self.upcomingKidsScroller = new scroller(scrollFrame, options);
+      self.upcomingKidsScroller.init();
+      initFocusHandler(document, slidee, self.upcomingKidsScroller);
+
+      // Upcoming sports scroller
+      var scrollFrame = document.querySelector('.upcomingSportsSection');
+      var slidee = scrollFrame.querySelector('.itemsContainer');
+      var options = {
+        horizontal: 1,
+        itemNav: 0,
+        mouseDragging: 1,
+        touchDragging: 1,
+        slidee: slidee,
+        itemSelector: '.card',
+        smart: true,
+        releaseSwing: true,
+        scrollBy: 200,
+        speed: 300,
+        immediateSpeed: 1,
+        elasticBounds: 1,
+        dragHandle: 1,
+        dynamicHandle: 1,
+        clickBar: 1,
+        scrollWidth: 500000
+      };
+      self.upcomingSportsScroller = new scroller(scrollFrame, options);
+      self.upcomingSportsScroller.init();
+      initFocusHandler(document, slidee, self.upcomingSportsScroller);
+    }
+
+    function initFocusHandler(view, slidee, scroller) {
+
+        //if (pageOptions.handleFocus) {
+
+            var scrollSlider = slidee;
+
+            var selectedItemInfoElement = view.querySelector('.selectedItemInfo');
+            var selectedIndexElement = view.querySelector('.selectedIndex');
+
+            self.focusHandler = new focusHandler({
+                parent: scrollSlider,
+                selectedItemInfoElement: selectedItemInfoElement,
+                selectedIndexElement: selectedIndexElement,
+                // animateFocus: pageOptions.animateFocus,
+                animateFocus: null,
+                scroller: scroller,
+                enableBackdrops: true,
+                zoomScale: 1.1
+            });
+        //}
+
+        document.querySelector('.latestRecordingsSection').style = 'overflow: visible !important;';
+        document.querySelector('.nowPlayingSection').style = 'overflow: visible !important;';
+        document.querySelector('.upcomingProgramsSection').style = 'overflow: visible !important;';
+        document.querySelector('.upcomingMoviesSection').style = 'overflow: visible !important;';
+        document.querySelector('.upcomingKidsSection').style = 'overflow: visible !important;';
+        document.querySelector('.upcomingSportsSection').style = 'overflow: visible !important;';
+    }
+
+    function parentWithClass(elem, className) {
+        while (!elem.classList || !elem.classList.contains(className)) {
+            elem = elem.parentNode;
+            if (!elem) {
+                return null;
+            }
+        }
+
+        return elem;
+    }
+
     function view(element, apiClient, parentId, autoFocus) {
         var self = this;
 
@@ -99,6 +318,47 @@ define(['focusManager', 'cardBuilder', 'pluginManager', './../skininfo', 'browse
 
         self.loadData = function () {
 
+          var tileOptions = {
+            target: ".tilesContainer",
+            items: [
+              {
+                title: Globalize.translate('Guide'),
+                link: 'livetv/guide.html',
+                // icon: '&#xE916;'
+                icon: 'dvr'
+              },
+              {
+                title: Globalize.translate('Recordings'),
+                link: 'livetv/livetv.html?tab=recordings&parentid=' + parentId + '&serverId=' + apiClient.serverId(),
+                // icon: '&#xE064;'
+                icon: '&#xE63A;'
+              },
+              {
+                title: Globalize.translate('Scheduled'),
+                link: 'livetv/livetv.html?tab=scheduled&parentid=' + parentId + '&serverId=' + apiClient.serverId(),
+                // icon: '&#xE04A;'
+                icon: 'schedule'
+              },
+              {
+                title: Globalize.translate('Channels'),
+                link: 'livetv/livetv.html?tab=channels&parentid=' + parentId + '&serverId=' + apiClient.serverId(),
+                // icon: '&#xE04A;'
+                icon: 'schedule'
+              }
+            ]
+          };
+
+          tile(tileOptions);
+
+          var tileElems = document.querySelectorAll('.tile');
+
+          for(var tileEl of tileElems) {
+            tileEl.addEventListener('click', function (e) {
+              var el = parentWithClass(e.target, 'tile');
+              Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, el.getAttribute('data-link')));
+            });
+          }
+
             return Promise.all([
                 loadLatestRecordings(element, apiClient),
                 loadNowPlaying(element, apiClient),
@@ -107,7 +367,7 @@ define(['focusManager', 'cardBuilder', 'pluginManager', './../skininfo', 'browse
 
                     IsAiring: false,
                     HasAired: false,
-                    limit: 9,
+                    limit: 10,
                     IsMovie: false,
                     IsSports: false,
                     IsKids: false,
@@ -128,7 +388,7 @@ define(['focusManager', 'cardBuilder', 'pluginManager', './../skininfo', 'browse
 
                     IsAiring: false,
                     HasAired: false,
-                    limit: 9,
+                    limit: 10,
                     IsSports: true
 
                 }),
@@ -137,24 +397,26 @@ define(['focusManager', 'cardBuilder', 'pluginManager', './../skininfo', 'browse
 
                     IsAiring: false,
                     HasAired: false,
-                    limit: 9,
+                    limit: 10,
                     IsSports: false,
                     IsKids: true
                 })
             ]);
         };
 
-        element.querySelector('.guideCard').addEventListener('click', function () {
-            Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'livetv/guide.html'));
-        });
+        initialiseScrollers();
 
-        element.querySelector('.recordingsCard').addEventListener('click', function () {
-            gotoTvView('recordings', parentId, apiClient.serverId());
-        });
-
-        element.querySelector('.scheduledLiveTvCard').addEventListener('click', function () {
-            gotoTvView('scheduled', parentId, apiClient.serverId());
-        });
+        // element.querySelector('.guideCard').addEventListener('click', function () {
+        //     Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'livetv/guide.html'));
+        // });
+        //
+        // element.querySelector('.recordingsCard').addEventListener('click', function () {
+        //     gotoTvView('recordings', parentId, apiClient.serverId());
+        // });
+        //
+        // element.querySelector('.scheduledLiveTvCard').addEventListener('click', function () {
+        //     gotoTvView('scheduled', parentId, apiClient.serverId());
+        // });
 
         self.destroy = function () {
 
