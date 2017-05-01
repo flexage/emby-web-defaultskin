@@ -1,4 +1,4 @@
-define(['loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper', 'browser', 'emby-button', 'scrollStyles'], function (loading, scroller, focusHandler, focusManager, scrollHelper, browser) {
+define(['connectionManager', 'loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper', 'browser', './../skininfo', 'emby-button', 'scrollStyles'], function (connectionManager, loading, scroller, focusHandler, focusManager, scrollHelper, browser, skinInfo) {
     'use strict';
 
     function focusViewSlider() {
@@ -50,6 +50,7 @@ define(['loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper',
     }
 
     function initEvents(view, instance) {
+        var apiClient = connectionManager.currentApiClient();
 
         // Catch events on the view headers
         var userViewNames = view.querySelector('.userViewNames');
@@ -72,6 +73,45 @@ define(['loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper',
                 instance.setFocusDelay(view, elem);
             }
         }, true);
+
+        userViewNames.addEventListener('click', function (e) {
+            var elem = parentWithClass(e.target, 'btnUserViewHeader');
+            if (elem) {
+                var viewId = elem.getAttribute('data-id');
+                var viewType = elem.getAttribute('data-type');
+                //console.log("viewType:" + viewType);
+                switch(viewType) {
+                	case 'movies':
+                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + viewId));
+                	    break;
+                	case 'tvshows':
+                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'tv/tv.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
+                	    break;
+                	case 'music':
+                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'music/music.html?tab=albumartists&parentid=' + viewId));
+                	    break;
+                	case 'homevideos':
+                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
+                	    break;
+                	case 'folders':
+                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
+                	    break;
+                	default:
+                		Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
+                }
+            }
+        }, true);
+    }
+
+    function parentWithClass(elem, className) {
+        while (!elem.classList || !elem.classList.contains(className)) {
+            elem = elem.parentNode;
+            if (!elem) {
+                return null;
+            }
+        }
+
+        return elem;
     }
 
     function selectUserView(page, id, self) {
