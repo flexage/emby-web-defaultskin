@@ -95,7 +95,8 @@ a {
 .userViewNames button h3 {
   width: 100%;
   margin: 0;
-  padding: 7px;
+  padding: 16px 16px 16px 100px;
+  border: none;
   color: #fff;
 }
 

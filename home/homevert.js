@@ -166,6 +166,9 @@ define(['connectionManager', 'loading', './../components/tabbedpagevertical', 'b
                 tabbedPageInstance.loadViewContent = loadViewContent;
                 tabbedPageInstance.renderTabs(result.Items);
                 pageInstance.tabbedPage = tabbedPageInstance;
+
+                var firstUserView = document.querySelector('.userViewNames button');
+                focusManager.focus(firstUserView);
             });
         }
 

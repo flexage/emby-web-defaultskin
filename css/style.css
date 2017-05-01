@@ -235,18 +235,18 @@ h1 {
 }
 
 .userViewNames h3 > i {
-  vertical-align: middle;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
   font-size: 1.2em;
-  vertical-align: -0.25em;
-  margin: -8px 16px -9px -8px;
-  padding: 12.5px 20px;
 }
 
 .userViewNames .btnUserViewHeader {
     display: flex;
     width: 100%;
     margin: 0;
-    padding: 9px 0;
+    padding: 0;
     text-transform: none !important;
     text-align: left;
 }
