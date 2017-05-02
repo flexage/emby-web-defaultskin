@@ -1,19 +1,30 @@
-<div class="pageContainer flex horizontalPageContent flex-direction-column">
+<div class="libraryContainer">
+  <div class="panel-left">
+    <div class="userViewNames"></div>
 
-    <div class="userViewNames">
-    </div>
+    <div class="selectedItemInfo"></div>
 
-    <div class="scrollFrame scrollFrameX itemScrollFrame topPadded" style="white-space: nowrap;">
-        <div is="emby-itemscontainer" class="scrollSlider contentScrollSlider">
-        </div>
-    </div>
-    <div class="alphaPicker"></div>
-    <div class="selectedItemInfo">
-    </div>
     <div class="listNumbers hide">
-        <span class="selectedIndex"></span>
-        <span class="listNumbersDivider">|</span>
-        <span class="listCount"></span>
+      <span class="selectedIndex"></span>
+      <span class="listNumbersDivider">|</span>
+      <span class="listCount"></span>
+    </div>
+  </div>
+
+  <div class="panel-right">
+    <div class="scrollFrame scrollFrameY itemScrollFrame">
+      <div class="viewContentArea">
+
+      </div>
     </div>
 
+    <!-- <div class="pageContainer flex horizontalPageContent">
+      <div class="alphaPicker"></div>
+
+      <div class="scrollFrame scrollFrameY itemScrollFrame topPadded" style="white-space: nowrap;">
+          <div is="emby-itemscontainer" class="scrollSlider contentScrollSlider">
+          </div>
+      </div>
+    </div> -->
+  </div>
 </div>

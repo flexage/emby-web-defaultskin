@@ -98,6 +98,10 @@ h1 {
     margin-left: 1em;
     font-size: 3.65vw;
     font-weight: 200;
+
+    position: absolute;
+    top: 0;
+    right: 2vw;
 }
 
 @media all and (max-width: 720px) {

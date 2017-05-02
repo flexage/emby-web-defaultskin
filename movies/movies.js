@@ -1,4 +1,4 @@
-define(['loading', 'alphaPicker', './../components/horizontallist', './../components/tabbedpage', 'backdrop', 'emby-itemscontainer'], function (loading, alphaPicker, horizontalList, tabbedPage, backdrop) {
+define(['loading', 'alphaPicker', './../components/verticallist', './../components/tabbedpagelibrary', 'backdrop', 'emby-itemscontainer'], function (loading, alphaPicker, horizontalList, tabbedPage, backdrop) {
     'use strict';
 
     return function (view, params) {
@@ -30,11 +30,11 @@ define(['loading', 'alphaPicker', './../components/horizontallist', './../compon
 
         function renderTabs(view, initialTabId, pageInstance, params) {
 
-            self.alphaPicker = new alphaPicker({
-                element: view.querySelector('.alphaPicker'),
-                itemsContainer: view.querySelector('.contentScrollSlider'),
-                itemClass: 'card'
-            });
+            // self.alphaPicker = new alphaPicker({
+            //     element: view.querySelector('.alphaPicker'),
+            //     itemsContainer: view.querySelector('.contentScrollSlider'),
+            //     itemClass: 'card'
+            // });
 
             var tabs = [
                 {
@@ -228,7 +228,7 @@ define(['loading', 'alphaPicker', './../components/horizontallist', './../compon
         function renderMovies(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.items({
                         StartIndex: startIndex,
@@ -254,7 +254,7 @@ define(['loading', 'alphaPicker', './../components/horizontallist', './../compon
                 },
                 cardOptions: {
                     rows: {
-                        portrait: 2,
+                        portrait: 5,
                         square: 3,
                         backdrop: 3
                     },
