@@ -130,6 +130,14 @@ define(['connectionManager', 'imageLoader', 'loading', 'scroller', './focushandl
         if (promise && browser.animate) {
             promise.then(function () {
                 fadeInRight(contentScrollSlider);
+
+                page.addEventListener('click', function (e) {
+                  var elem = parentWithClass(e.target, 'itemAction');
+                  if (elem) {
+                    var viewId = elem.getAttribute('data-id');
+              	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'item/item.html?id=' + viewId + '&serverId=' + apiClient.serverId()));
+                  }
+                });
             });
         }
     }
