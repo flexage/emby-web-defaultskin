@@ -71,9 +71,11 @@ div[data-type="home"] {
 
 .panel-right {
   width: 100%;
-  margin-top: 8vh;
-  margin-left: 0vw;
+  margin-top: 0;
+  padding-top: 8vh;
+  margin-left: 0;
   overflow: hidden;
+  box-shadow: inset 0 8vh 16vh -8vh #000, inset 0 -8vh 16vh -8vh #000;
 }
 
 .panel-right .viewContentArea {
