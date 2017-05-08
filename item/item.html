@@ -1,23 +1,19 @@
-<div class="pageContainer fullWidth vertical">
+<div class="pageContainer itemPageContainer fullWidth vertical">
 
     <div class="itemPageFixedLeft hide">
         <div class="leftFixedDetailImageContainer"></div>
 
         <div class="itemPageButtons">
             <button is="emby-button" class="btnPlay block raised">
-                <i class="md-icon">&#xE037;</i>
                 <span class="btnPlayText">${Play}</span>
             </button>
             <button is="emby-button" class="btnQueue block raised">
-                <i class="md-icon">&#xE03C;</i>
                 <span>${Queue}</span>
             </button>
             <button is="emby-button" class="btnShuffle raised block hide">
-                <i class="md-icon">&#xE043;</i>
                 <span>${Shuffle}</span>
             </button>
             <button is="emby-button" class="btnInstantMix raised block hide">
-                <i class="md-icon">&#xE043;</i>
                 <span>${InstantMix}</span>
             </button>
 
@@ -26,18 +22,26 @@
 
         </div>
     </div>
-    <div class="scrollFrame scrollFrameY itemScrollFrame">
+
+
+    <div class="scrollFrame scrollFrameY itemScrollFrameY itemScrollFrame">
         <div class="scrollSlider itemVerticalScrollSlider">
 
             <div class="detailLogo"></div>
 
-            <div class="verticalSection mainSection">
+            <div class="verticalSection itemVerticalSection mainSection padded-left padded-right">
                 <div class="itemPageLeft">
                     <div class="detailImageContainer"></div>
                 </div>
                 <div class="itemPageMain">
                     <div class="parentName hide" style="margin: 0 0 .5em;"></div>
                     <h1 class="itemTitle" style="margin: .25em 0;"></h1>
+
+                    <div class="peopleSection">
+                        <h2 class="sectionTitle">${CastAndCrew}</h2>
+                        <div is="emby-itemscontainer" class="itemsContainer focuscontainer-x"></div>
+                    </div>
+
                     <div class="mediaInfo mediaInfoPrimary">
 
                     </div>
@@ -47,7 +51,11 @@
 
                     <div class="itemPageButtonsContainer">
                         <div class="itemPageButtons">
-                            <button is="emby-button" class="btnPlay hide raised">
+                            <button is="emby-button" class="btnResume hide raised" data-mode="resume">
+                                <span>${Resume}</span>
+                            </button>
+
+                            <button is="emby-button" class="btnPlay hide raised" data-mode="play">
                                 <span class="btnPlayText">${Play}</span>
                             </button>
 
@@ -59,16 +67,22 @@
                                 <span>${Trailer}</span>
                             </button>
 
+                            <button is="emby-button" type="button" class="btnCancelSeriesTimer hide raised">
+                                <span>${ButtonCancelSeries}</span>
+                            </button>
+
                             <button is="emby-button" class="btnMore hide raised">
                                 &nbsp;
                                 <i class="md-icon">&#xE5D4;</i>
                                 &nbsp;
                             </button>
                         </div>
+
+                        <button is="emby-button" type="button" class="btnDeleteItem fab mini hide" title="${DeleteMedia}"><i class="md-icon">&#xE872;</i></button>
+
                         <div class="itemPageUserDataIcons">
 
                         </div>
-                        <button is="emby-button" type="button" class="btnDeleteItem fab mini hide" title="${DeleteMedia}"><i class="md-icon">&#xE872;</i></button>
                     </div>
 
                     <div class="syncLocalContainer hide" style="margin: 1em 0;">
@@ -88,10 +102,14 @@
 
                     <p class="overview hide"></p>
 
-                    <div class="trackList" is="emby-itemscontainer">
+                    <div class="trackList vertical-list" is="emby-itemscontainer">
 
                     </div>
-                    <div class="episodes" is="emby-itemscontainer">
+                    <div class="episodes vertical-list" is="emby-itemscontainer">
+
+                    </div>
+
+                    <div class="seriesRecordingEditor hide">
 
                     </div>
 
@@ -101,36 +119,43 @@
                 <div style="clear:both;"></div>
             </div>
 
-            <div class="itemNextUpSection verticalSection hide">
-                <h2>${NextUp}</h2>
+            <div class="itemNextUpSection verticalSection itemVerticalSection padded-left padded-right hide">
+                <h2 class="sectionTitle">${NextUp}</h2>
                 <div is="emby-itemscontainer" class="itemsContainer vertical-wrap"></div>
             </div>
-            <div class="verticalSection childrenSection hide">
-                <h2></h2>
-                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap childrenItemsContainer"></div>
+            <div class="verticalSection itemVerticalSection childrenSection padded-left padded-right hide">
+                <h2 class="sectionTitle"></h2>
+                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap childrenItemsContainer focuscontainer-x"></div>
             </div>
-            <div class="verticalSection peopleSection hide">
-                <h2>${CastAndCrew}</h2>
-                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap"></div>
+            <!-- <div class="verticalSection itemVerticalSection peopleSection padded-left padded-right hide">
+                <h2 class="sectionTitle">${CastAndCrew}</h2>
+                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap focuscontainer-x"></div>
+            </div> -->
+            <div class="verticalSection itemVerticalSection extrasSection padded-left padded-right hide">
+                <h2 class="sectionTitle">${Extras}</h2>
+                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap focuscontainer-x"></div>
             </div>
-            <div class="verticalSection extrasSection hide">
-                <h2>${Extras}</h2>
-                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap"></div>
+            <div class="verticalSection itemVerticalSection moreFromSection padded-left padded-right hide">
+                <h2 class="sectionTitle"></h2>
+                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap focuscontainer-x"></div>
             </div>
-            <div class="verticalSection moreFromSection hide">
-                <h2></h2>
-                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap"></div>
+            <div class="verticalSection itemVerticalSection similarSection padded-left padded-right hide">
+                <h2 class="sectionTitle">${HeaderMoreLikeThis}</h2>
+                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap focuscontainer-x"></div>
             </div>
-            <div class="verticalSection similarSection hide">
-                <h2>${HeaderMoreLikeThis}</h2>
-                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap"></div>
-            </div>
-            <div class="verticalSection scenesSection hide">
-                <h2>${Scenes}</h2>
-                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap"></div>
+            <div class="verticalSection itemVerticalSection scenesSection padded-left padded-right hide">
+                <h2 class="sectionTitle">${Scenes}</h2>
+                <div is="emby-itemscontainer" class="itemsContainer vertical-wrap focuscontainer-x"></div>
             </div>
             <div class="peopleItems">
 
+            </div>
+            <div class="verticalSection itemVerticalSection seriesTimerScheduleSection padded-left padded-right hide">
+                <h1>
+                    ${Schedule}
+                </h1>
+                <div class="seriesTimerSchedule">
+                </div>
             </div>
         </div>
     </div>

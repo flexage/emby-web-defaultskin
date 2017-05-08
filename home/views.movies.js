@@ -1,7 +1,7 @@
 define(['./spotlight', 'scroller', 'imageLoader', './../components/focusHandler', 'focusManager', 'cardBuilder', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (spotlight, scroller, imageLoader, focusHandler, focusManager, cardbuilder, tile, skinInfo) {
     'use strict';
 
-    function loadResume(element, parentId) {
+    function loadResume(element, apiClient, parentId) {
 
         var options = {
 
@@ -22,10 +22,12 @@ define(['./spotlight', 'scroller', 'imageLoader', './../components/focusHandler'
                 rows: 1,
                 scalable: false
             });
+
+            bindItemActions(section, apiClient);
         });
     }
 
-    function loadLatest(element, parentId) {
+    function loadLatest(element, apiClient, parentId) {
 
         var options = {
 
@@ -46,7 +48,25 @@ define(['./spotlight', 'scroller', 'imageLoader', './../components/focusHandler'
                 rows: 1,
                 scalable: false
             });
+
+            bindItemActions(section, apiClient);
         });
+
+    }
+
+    function bindItemActions(section, apiClient) {
+      var items = section.querySelectorAll('.itemAction');
+      for(var i = 0; i < items.length; i++) {
+        console.log('items[' + i + ']', items[i]);
+        items[i].addEventListener('click', function (e) {
+          console.log('clicked!');
+          var elem = parentWithClass(e.target, 'itemAction');
+          if (elem) {
+            var viewId = elem.getAttribute('data-id');
+            Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'item/item.html?id=' + viewId + '&serverId=' + apiClient.serverId()));
+          }
+        });
+      }
     }
 
     // function loadSpotlight(instance, element, parentId) {
@@ -71,72 +91,72 @@ define(['./spotlight', 'scroller', 'imageLoader', './../components/focusHandler'
     //     });
     // }
 
-    function loadRecommendations(element, apiClient, parentId) {
-
-        return apiClient.getMovieRecommendations({
-
-            categoryLimit: 4,
-            ItemLimit: 8,
-            UserId: apiClient.getCurrentUserId(),
-            ImageTypeLimit: 1,
-            Fields: "PrimaryImageAspectRatio"
-
-        }).then(function (recommendations) {
-
-            var values = recommendations.map(getRecommendationHtml);
-
-            var recs = element.querySelector('.recommendations');
-
-            if (recs) {
-                recs.innerHTML = values.join('');
-
-                imageLoader.lazyChildren(recs);
-            }
-        });
-    }
-
-    function getRecommendationHtml(recommendation) {
-
-        var cardsHtml = cardbuilder.getCardsHtml(recommendation.Items, {
-            shape: 'portrait',
-            rows: 1,
-            scalable: false
-        });
-
-        var html = '';
-
-        var title = '';
-
-        switch (recommendation.RecommendationType) {
-
-            case 'SimilarToRecentlyPlayed':
-                title = Globalize.translate('RecommendationBecauseYouWatched').replace("{0}", recommendation.BaselineItemName);
-                break;
-            case 'SimilarToLikedItem':
-                title = Globalize.translate('RecommendationBecauseYouLike').replace("{0}", recommendation.BaselineItemName);
-                break;
-            case 'HasDirectorFromRecentlyPlayed':
-            case 'HasLikedDirector':
-                title = Globalize.translate('RecommendationDirectedBy').replace("{0}", recommendation.BaselineItemName);
-                break;
-            case 'HasActorFromRecentlyPlayed':
-            case 'HasLikedActor':
-                title = Globalize.translate('RecommendationStarring').replace("{0}", recommendation.BaselineItemName);
-                break;
-        }
-
-        html += '<div class="horizontalSection">';
-        html += '<div class="sectionTitle">' + title + '</div>';
-
-        html += '<div is="emby-itemscontainer" class="itemsContainer">';
-
-        html += cardsHtml;
-
-        html += '</div>';
-        html += '</div>';
-
-        return html;
-    }
+    // function loadRecommendations(element, apiClient, parentId) {
+    //
+    //     return apiClient.getMovieRecommendations({
+    //
+    //         categoryLimit: 4,
+    //         ItemLimit: 8,
+    //         UserId: apiClient.getCurrentUserId(),
+    //         ImageTypeLimit: 1,
+    //         Fields: "PrimaryImageAspectRatio"
+    //
+    //     }).then(function (recommendations) {
+    //
+    //         var values = recommendations.map(getRecommendationHtml);
+    //
+    //         var recs = element.querySelector('.recommendations');
+    //
+    //         if (recs) {
+    //             recs.innerHTML = values.join('');
+    //
+    //             imageLoader.lazyChildren(recs);
+    //         }
+    //     });
+    // }
+    //
+    // function getRecommendationHtml(recommendation) {
+    //
+    //     var cardsHtml = cardbuilder.getCardsHtml(recommendation.Items, {
+    //         shape: 'portrait',
+    //         rows: 1,
+    //         scalable: false
+    //     });
+    //
+    //     var html = '';
+    //
+    //     var title = '';
+    //
+    //     switch (recommendation.RecommendationType) {
+    //
+    //         case 'SimilarToRecentlyPlayed':
+    //             title = Globalize.translate('RecommendationBecauseYouWatched').replace("{0}", recommendation.BaselineItemName);
+    //             break;
+    //         case 'SimilarToLikedItem':
+    //             title = Globalize.translate('RecommendationBecauseYouLike').replace("{0}", recommendation.BaselineItemName);
+    //             break;
+    //         case 'HasDirectorFromRecentlyPlayed':
+    //         case 'HasLikedDirector':
+    //             title = Globalize.translate('RecommendationDirectedBy').replace("{0}", recommendation.BaselineItemName);
+    //             break;
+    //         case 'HasActorFromRecentlyPlayed':
+    //         case 'HasLikedActor':
+    //             title = Globalize.translate('RecommendationStarring').replace("{0}", recommendation.BaselineItemName);
+    //             break;
+    //     }
+    //
+    //     html += '<div class="horizontalSection">';
+    //     html += '<div class="sectionTitle">' + title + '</div>';
+    //
+    //     html += '<div is="emby-itemscontainer" class="itemsContainer">';
+    //
+    //     html += cardsHtml;
+    //
+    //     html += '</div>';
+    //     html += '</div>';
+    //
+    //     return html;
+    // }
 
     function loadImages(element, parentId) {
 
@@ -349,13 +369,13 @@ define(['./spotlight', 'scroller', 'imageLoader', './../components/focusHandler'
             // });
 
             var promises = [
-                loadResume(element, parentId),
-                loadLatest(element, parentId)
+                loadResume(element, apiClient, parentId),
+                loadLatest(element, apiClient, parentId),
             ];
 
-            if (!isRefresh) {
-                promises.push(loadRecommendations(element, apiClient, parentId));
-            }
+            // if (!isRefresh) {
+            //     promises.push(loadRecommendations(element, apiClient, parentId));
+            // }
 
             return Promise.all(promises);
         };

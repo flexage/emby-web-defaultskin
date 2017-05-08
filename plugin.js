@@ -33,8 +33,7 @@ define(['playbackManager', 'pluginManager', 'browser', 'connectionManager', 'eve
             var list = [
                 // Used for the mpaa rating
                 'css!' + pluginManager.mapPath(self, 'css/style'),
-                'css!' + pluginManager.mapPath(self, 'css/colors.dark'),
-                'css!' + pluginManager.mapPath(self, 'css/librarycontainer')
+                'css!' + pluginManager.mapPath(self, 'css/colors.dark')
             ];
 
             if (browser.android) {
@@ -132,7 +131,10 @@ define(['playbackManager', 'pluginManager', 'browser', 'connectionManager', 'eve
             routes.push({
                 path: 'movies/movies.html',
                 transition: 'slide',
-                controller: self.id + '/movies/movies'
+                controller: self.id + '/movies/movies',
+                dependencies: [
+                  'css!' + pluginManager.mapPath(self, 'css/librarycontainer')
+                ]
             });
 
             routes.push({

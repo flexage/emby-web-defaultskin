@@ -1,3 +1,9 @@
+.mainSection .raised {
+    padding: .7em 1.3em;
+    text-transform: none;
+    margin: 0 .35em 0 0;
+}
+
 .layout-tv .personCard {
     width: 14.285714285714285714285714285714%;
 }
@@ -81,7 +87,7 @@
     margin-right: 1em;
 }
 
-.itemPageUserDataIcons button + button {
+.itemPageUserDataIcons button {
     margin-left: .25em !important;
 }
 
@@ -108,16 +114,16 @@
 
     .detailImageContainer .itemProgressBar {
         position: relative;
-        /* Matches paper-progress height set in paperstyles */
-        top: -.56vh;
+        /* Slightly higher than it's height' */
+        top: -.5em;
     }
 
 .detailImage {
     min-width: 20vw;
-    max-width: 36vw;
+    max-width: 35vw;
     min-height: 30vh;
     max-height: 67vh;
-    box-shadow: 0 0 1.85vh #000;
+    box-shadow: 0 0 .8em #000;
     border: 1px solid #222;
     user-drag: none;
     user-select: none;
@@ -129,10 +135,10 @@
 
 .itemPageFixedLeft {
     position: absolute;
-    top: 10vh;
+    top: 10%;
     left: 0;
     width: 25%;
-    padding-top: 1.25em;
+    padding: 1.25em 2em 0;
 }
 
 .leftFixedDetailImageContainer .detailImage {
@@ -168,7 +174,7 @@
 }
 
 .itemNextUpSection .backdropCard {
-    width: 35% !important;
+    width: 30% !important;
 }
 
 .mediaInfoImageIcon img {
@@ -204,23 +210,169 @@
     background-size: contain;
 }
 
-@media all and (max-width: 1400px) {
+@media all and (max-width: 87.5em) {
 
     .detailLogo {
         right: 5%;
     }
 }
 
-@media all and (max-width: 1200px) {
+@media all and (max-width: 75em) {
 
     .detailLogo {
         right: 2%;
     }
 }
 
-@media all and (max-width: 1100px) {
+@media all and (max-width: 68.75em) {
 
     .detailLogo {
         display: none;
     }
+}
+
+.layout-tv .itemVerticalSection {
+    margin-bottom: 3.4em !important;
+}
+
+
+/* ----------------------------
+   Overrides
+   ---------------------------- */
+
+.detailBackgroundContainer.withBackdrop {
+  background: transparent;
+}
+
+/* Movie */
+.itemPageContainer .itemTitle, .tagline {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 1vh;
+  left: 0;
+  text-align: center;
+}
+
+.itemPageContainer .tagline {
+  top: 3.5vh;
+  font-weight: 200;
+}
+
+.itemPageContainer .detailLogo {
+  position: absolute;
+  top: 3vh;
+  left: 2vw;
+}
+
+.itemPageContainer .detailImage {
+  position: absolute;
+  top: 13vh;
+  left: 3vw;
+  max-height: 78vh;
+  max-width: 29vw;
+}
+
+.itemPageContainer .genres {
+  position: absolute;
+  bottom: 1vh;
+  left: 3vw;
+  width: 26vw;
+  text-align: center;
+}
+
+.itemPageContainer .peopleSection {
+  width: 50vw;
+  position: absolute;
+  top: 13vh;
+  left: 33vw;
+}
+
+.itemPageContainer .peopleSection .sectionTitle {
+  display: none;
+}
+
+.itemPageContainer .peopleSection .personCard {
+  position: relative;
+  width: 10.1vw;
+  font-weight: 200;
+  font-size: 1em;
+}
+
+.itemPageContainer .peopleSection .personCard .cardFooter {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: transparent;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%);
+  box-sizing: border-box;
+  padding: 1vh 0vw;
+}
+
+.itemPageContainer .mediaInfoPrimary {
+  display: block;
+  width: 50vw;
+  position: absolute;
+  top: 40vh;
+  left: 33vw;
+  background-color: rgba(0,0,0,0.3);
+  padding: 2vh 1vw;
+  box-sizing: border-box;
+  line-height: 4vh;
+}
+
+.itemPageContainer .mediaInfoPrimary > div {
+  display: inline-block;
+}
+
+.itemPageContainer .overview {
+  width: 50vw;
+  height: 27vh;
+  position: absolute;
+  top: 49vh;
+  left: 33vw;
+  box-sizing: border-box;
+  padding: 30px;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.itemPageContainer .itemPageButtonsContainer {
+  display: block;
+  position: absolute;
+  bottom: 6vh;
+  left: 33vw;
+  width: 67vw;
+}
+
+.itemPageContainer .itemPageButtonsContainer .itemPageButtons,
+.itemPageContainer .itemPageButtonsContainer .itemPageUserDataIcons {
+  display: inline-block;
+  margin: 0;
+}
+
+.itemPageContainer .itemPageButtonsContainer button {
+  display: inline-block;
+  width: 8vw !important;
+  height: 10vh !important;
+  margin: 0.075vw !important;
+  border-radius: 0 !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  text-align: center !important;
+}
+
+.itemPageContainer .mediaInfoIcons {
+  position: absolute;
+  bottom: 0vh;
+  right: 8vw;
+}
+.itemPageContainer .mediaInfoIcons .mediaInfoText {
+  background-color: rgba(0,0,0,0.3);
+}
+
+.itemPageContainer .childrenSection, .extrasSection, .moreFromSection, .similarSection, .scenesSection {
+  display: none;
 }

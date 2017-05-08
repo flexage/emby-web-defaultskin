@@ -143,7 +143,7 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
             }).then(function (genresResult) {
 
                 self.listController = new horizontalList({
-                    itemsContainer: page.querySelector('.contentScrollSlider'),
+                    itemsContainer: page.querySelector('.viewContentArea'),
                     getItemsMethod: function (startIndex, limit) {
                         return Emby.Models.items({
                             StartIndex: startIndex,
@@ -173,9 +173,9 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
                         indexLimit: 4,
                         parentId: pageParams.parentid,
                         rows: {
-                            portrait: 2,
-                            square: 3,
-                            backdrop: 3
+                            portrait: 1,
+                            square: 1,
+                            backdrop: 1
                         },
                         scalable: false
                     }
@@ -188,7 +188,7 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
         function renderFavorites(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.items({
                         StartIndex: startIndex,
@@ -214,9 +214,9 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
                 },
                 cardOptions: {
                     rows: {
-                        portrait: 2,
-                        square: 3,
-                        backdrop: 3
+                        portrait: 1,
+                        square: 1,
+                        backdrop: 1
                     },
                     scalable: false
                 }
@@ -254,9 +254,9 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
                 },
                 cardOptions: {
                     rows: {
-                        portrait: 5,
-                        square: 3,
-                        backdrop: 3
+                        portrait: 1,
+                        square: 1,
+                        backdrop: 1
                     },
                     scalable: false
                 }
@@ -268,7 +268,7 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
         function renderUnwatchedMovies(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.items({
                         StartIndex: startIndex,
@@ -295,9 +295,9 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
                 },
                 cardOptions: {
                     rows: {
-                        portrait: 2,
-                        square: 3,
-                        backdrop: 3
+                        portrait: 1,
+                        square: 1,
+                        backdrop: 1
                     },
                     scalable: false
                 }
@@ -309,7 +309,7 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
         function renderCollections(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.collections({
                         StartIndex: startIndex,
@@ -331,9 +331,9 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
                 },
                 cardOptions: {
                     rows: {
-                        portrait: 2,
-                        square: 3,
-                        backdrop: 3
+                        portrait: 1,
+                        square: 1,
+                        backdrop: 1
                     },
                     scalable: false
                 }
@@ -345,7 +345,7 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
         function renderYears(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.items({
                         StartIndex: startIndex,
@@ -360,9 +360,9 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
                 cardOptions: {
                     indexBy: 'ProductionYear',
                     rows: {
-                        portrait: 2,
-                        square: 3,
-                        backdrop: 3
+                        portrait: 1,
+                        square: 1,
+                        backdrop: 1
                     },
                     scalable: false
                 },
@@ -386,7 +386,7 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
         function renderTopRated(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.items({
                         StartIndex: startIndex,
@@ -401,9 +401,9 @@ define(['loading', 'alphaPicker', './../components/verticallist', './../componen
                 cardOptions: {
                     indexBy: 'CommunityRating',
                     rows: {
-                        portrait: 2,
-                        square: 3,
-                        backdrop: 3
+                        portrait: 1,
+                        square: 1,
+                        backdrop: 1
                     },
                     scalable: false
                 },
