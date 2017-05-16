@@ -214,68 +214,70 @@ define(['connectionManager', 'imageLoader', 'loading', 'scroller', './focushandl
             //     html += '';
             // }
 
-            html += '<div class="mediaInfoPrimary">';
-            var mediaSource = item.MediaSources[0];
+            if(item.MediaSources && item.MediaSources.length > 0) {
+              html += '<div class="mediaInfoPrimary">';
+              var mediaSource = item.MediaSources[0];
 
-            var videoStream = (mediaSource.MediaStreams || []).filter(function (i) {
-                return i.Type == 'Video';
-            })[0] || {};
-            var audioStream = (mediaSource.MediaStreams || []).filter(function (i) {
-                return i.Type == 'Audio';
-            })[0] || {};
+              var videoStream = (mediaSource.MediaStreams || []).filter(function (i) {
+                  return i.Type == 'Video';
+              })[0] || {};
+              var audioStream = (mediaSource.MediaStreams || []).filter(function (i) {
+                  return i.Type == 'Audio';
+              })[0] || {};
 
-            var resolutionText = getResolutionText(item);
-            if (resolutionText) {
-                html += '<div class="mediaInfoIcon mediaInfoText">' + resolutionText + '</div>';
+              var resolutionText = getResolutionText(item);
+              if (resolutionText) {
+                  html += '<div class="mediaInfoIcon mediaInfoText">' + resolutionText + '</div>';
+              }
+
+              var channels = getChannels(item);
+              var channelText;
+
+              if (channels == 8) {
+
+                  channelText = '7.1';
+
+              } else if (channels == 7) {
+
+                  channelText = '6.1';
+
+              } else if (channels == 6) {
+
+                  channelText = '5.1';
+
+              } else if (channels == 2) {
+
+                  channelText = '2.0';
+              }
+
+              if (channelText) {
+                  html += '<div class="mediaInfoIcon mediaInfoText">' + channelText + '</div>';
+              }
+
+              html += '</div>';
+
+              html += '<div class="mediaInfo">';
+
+              if (mediaSource.Container) {
+                  html += '<div class="mediaInfoIcon mediaInfoText">' + mediaSource.Container + '</div>';
+              }
+
+              if (videoStream.Codec) {
+                  html += '<div class="mediaInfoIcon mediaInfoText">' + videoStream.Codec + '</div>';
+              }
+
+              if (audioStream.Codec == 'dca' && audioStream.Profile) {
+                  html += '<div class="mediaInfoIcon mediaInfoText">' + audioStream.Profile + '</div>';
+              } else if (audioStream.Codec) {
+                  html += '<div class="mediaInfoIcon mediaInfoText">' + audioStream.Codec + '</div>';
+              }
+
+              if (videoStream.AspectRatio) {
+                  html += '<div class="mediaInfoIcon mediaInfoText">' + videoStream.AspectRatio + '</div>';
+              }
+
+              html += '</div>';
             }
-
-            var channels = getChannels(item);
-            var channelText;
-
-            if (channels == 8) {
-
-                channelText = '7.1';
-
-            } else if (channels == 7) {
-
-                channelText = '6.1';
-
-            } else if (channels == 6) {
-
-                channelText = '5.1';
-
-            } else if (channels == 2) {
-
-                channelText = '2.0';
-            }
-
-            if (channelText) {
-                html += '<div class="mediaInfoIcon mediaInfoText">' + channelText + '</div>';
-            }
-
-            html += '</div>';
-
-            html += '<div class="mediaInfo">';
-
-            if (mediaSource.Container) {
-                html += '<div class="mediaInfoIcon mediaInfoText">' + mediaSource.Container + '</div>';
-            }
-
-            if (videoStream.Codec) {
-                html += '<div class="mediaInfoIcon mediaInfoText">' + videoStream.Codec + '</div>';
-            }
-
-            if (audioStream.Codec == 'dca' && audioStream.Profile) {
-                html += '<div class="mediaInfoIcon mediaInfoText">' + audioStream.Profile + '</div>';
-            } else if (audioStream.Codec) {
-                html += '<div class="mediaInfoIcon mediaInfoText">' + audioStream.Codec + '</div>';
-            }
-
-            if (videoStream.AspectRatio) {
-                html += '<div class="mediaInfoIcon mediaInfoText">' + videoStream.AspectRatio + '</div>';
-            }
-
-            html += '</div>';
 
             itemInfoElement.innerHTML = html;
 

@@ -373,6 +373,88 @@
   background-color: rgba(0,0,0,0.3);
 }
 
-.itemPageContainer .childrenSection, .extrasSection, .moreFromSection, .similarSection, .scenesSection {
+.itemPageContainer .childrenSection, .extrasSection, .moreFromSection, .similarSection, .scenesSection, .itemNextUpSection, .seriesTimerScheduleSection {
+  display: none;
+}
+
+/* Series */
+.itemPageContainer.seasons .overview,
+.itemPageContainer.seasons .peopleSection,
+.itemPageContainer.seasons .mediaInfoPrimary,
+.itemPageContainer.seasons .itemPageButtonsContainer {
+  display: none;
+}
+
+.itemPageContainer.seasons .childrenSection {
+  display: block;
+  width: 50vw;
+  height: 82vh;
+  position: absolute;
+  top: 10vh;
+  left: 30vw;
+  overflow-y: auto;
+}
+
+.itemPageContainer.seasons .childrenSection .portraitCard-scalable {
+  display: block;
+  width: 25%;
+  padding: 0 !important;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+
+/* Episodes */
+.itemPageContainer.episodeList .overview,
+.itemPageContainer.episodeList .peopleSection,
+.itemPageContainer.episodeList .mediaInfoPrimary,
+.itemPageContainer.episodeList .itemPageButtonsContainer {
+  display: none;
+}
+
+.itemPageContainer.episodeList .episodes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  height: 90%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  overflow-y: auto;
+  color: #cc0000;
+}
+
+.itemPageContainer.episodeList .episodes .listItem {
+  display:block;
+  box-sizing: border-box;
+  width: 23%;
+  margin: 1%;
+  padding: 2px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.itemPageContainer.episodeList .episodes .listItem:focus {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border-radius: 0;
+  border: 2px solid #167996;
+}
+
+.itemPageContainer.episodeList .episodes .listItem .listItemImage {
+  width: 100%;
+  height: 18vh;
+  margin: 0;
+}
+
+.itemPageContainer.episodeList .episodes .listItem .listItemBody {
+  display: block;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+}
+
+.itemPageContainer.episodeList .episodes .listItem .listItemBody .secondary {
   display: none;
 }

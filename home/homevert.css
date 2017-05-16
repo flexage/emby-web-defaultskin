@@ -94,8 +94,8 @@ div[data-type="home"] {
   box-sizing: border-box;
   width: calc(26vh + 4px);
   height: 16vh;
-  margin: 6px;
-  margin-right: 3vw;
+  margin: 6px.5em;
+  margin-right: 4vw;
   padding: 0.8vw;
   border: none;
   background-color: rgba(0, 0, 0, 0.8);

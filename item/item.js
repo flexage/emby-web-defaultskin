@@ -910,6 +910,8 @@ define(['itemContextMenu', 'scroller', 'loading', './../skininfo', 'datetime', '
                 return;
             }
 
+            view.querySelector('.itemPageContainer').classList.add('episodeList');
+
             var options = {
                 Fields: "Overview"
             };
@@ -996,6 +998,7 @@ define(['itemContextMenu', 'scroller', 'loading', './../skininfo', 'datetime', '
             if (item.Type === "Series") {
                 headerText.innerHTML = globalize.translate('Seasons');
                 headerText.classList.remove('hide');
+                view.querySelector('.itemPageContainer').classList.add('seasons');
 
             } else if (item.Type === "MusicArtist") {
                 headerText.innerHTML = globalize.translate('Albums');
@@ -1115,6 +1118,8 @@ define(['itemContextMenu', 'scroller', 'loading', './../skininfo', 'datetime', '
                         scrollHelper.toStart(itemsContainer, card.previousSibling || card, true);
                     }
                 }
+
+                focusManager.autoFocus(section, true);
             });
         }
 

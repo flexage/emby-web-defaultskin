@@ -1,4 +1,4 @@
-define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../components/horizontallist', 'cardBuilder', './../components/focushandler', './../components/tabbedpage', 'backdrop', 'focusManager', 'emby-itemscontainer'], function (connectionManager, loading, skinInfo, alphaPicker, horizontalList, cardBuilder, focusHandler, tabbedPage, backdrop, focusManager) {
+define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../components/verticallist', 'cardBuilder', './../components/focushandler', './../components/tabbedpagelibrary', 'backdrop', 'focusManager', 'emby-itemscontainer'], function (connectionManager, loading, skinInfo, alphaPicker, horizontalList, cardBuilder, focusHandler, tabbedPage, backdrop, focusManager) {
     'use strict';
 
     return function (view, params) {
@@ -35,11 +35,11 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
 
         function renderTabs(view, initialTabId, pageInstance, params) {
 
-            self.alphaPicker = new alphaPicker({
-                element: view.querySelector('.alphaPicker'),
-                itemsContainer: view.querySelector('.contentScrollSlider'),
-                itemClass: 'card'
-            });
+            // self.alphaPicker = new alphaPicker({
+            //     element: view.querySelector('.alphaPicker'),
+            //     itemsContainer: view.querySelector('.viewContentArea'),
+            //     itemClass: 'card'
+            // });
 
             var tabs = [
                 {
@@ -131,7 +131,7 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
         function renderUpcoming(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return apiClient.getUpcomingEpisodes({
                         EnableImageTypes: "Primary,Backdrop,Thumb",
@@ -146,7 +146,7 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
                 autoFocus: autoFocus,
                 cardOptions: {
                     shape: 'backdrop',
-                    rows: 3,
+                    rows: 1,
                     preferThumb: true,
                     indexBy: 'PremiereDate',
                     scalable: false
@@ -167,7 +167,7 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
         function renderSeries(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return apiClient.getItems(apiClient.getCurrentUserId(), {
                         StartIndex: startIndex,
@@ -193,7 +193,7 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
                     }
                 },
                 cardOptions: {
-                    rows: 2,
+                    rows: 1,
                     scalable: false
                 }
             });
@@ -213,7 +213,7 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
             }).then(function (genresResult) {
 
                 self.listController = new horizontalList({
-                    itemsContainer: page.querySelector('.contentScrollSlider'),
+                    itemsContainer: page.querySelector('.viewContentArea'),
                     getItemsMethod: function (startIndex, limit) {
                         return apiClient.getItems(apiClient.getCurrentUserId(), {
                             StartIndex: startIndex,
@@ -239,7 +239,7 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
                         genres: genresResult.Items,
                         indexLimit: 4,
                         parentId: pageParams.parentid,
-                        rows: 2,
+                        rows: 1,
                         scalable: false
                     }
                 });
@@ -251,14 +251,14 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
         function renderFavorites(page, pageParams, autoFocus, scroller, resolve) {
 
             require(['text!' + Emby.PluginManager.mapPath(skinInfo.id, 'tv/views.favorites.html')], function (html) {
-                var parent = page.querySelector('.contentScrollSlider');
+                var parent = page.querySelector('.viewContentArea');
                 parent.innerHTML = Globalize.translateDocument(html, skinInfo.id);
                 loadFavoriteSeries(parent, pageParams, autoFocus, resolve);
                 loadFavoriteEpisodes(parent, pageParams);
             });
 
             self.focusHandler = new focusHandler({
-                parent: page.querySelector('.contentScrollSlider'),
+                parent: page.querySelector('.viewContentArea'),
                 scroller: scroller,
                 selectedItemInfoElement: page.querySelector('.selectedItemInfo')
             });
@@ -288,7 +288,7 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
                 cardBuilder.buildCards(result.Items, {
                     itemsContainer: section.querySelector('.itemsContainer'),
                     shape: 'auto',
-                    rows: 2,
+                    rows: 1,
                     scalable: false
                 });
 
@@ -328,7 +328,7 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
                 cardBuilder.buildCards(result.Items, {
                     itemsContainer: section.querySelector('.itemsContainer'),
                     shape: 'auto',
-                    rows: 3,
+                    rows: 1,
                     overlayText: true,
                     //showTitle: true,
                     showParentTitle: true,
