@@ -1014,6 +1014,7 @@ define(['itemContextMenu', 'scroller', 'loading', './../skininfo', 'datetime', '
             } else if (item.Type === "Episode" && item.SeriesId && item.SeasonId) {
                 headerText.innerHTML = globalize.translate('MoreFrom', item.SeasonName);
                 headerText.classList.remove('hide');
+                view.querySelector('.itemPageContainer').classList.add('episode');
 
             } else {
                 section.classList.add('hide');

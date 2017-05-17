@@ -416,15 +416,19 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 80%;
+  width: 95%;
   height: 90%;
   margin: 0;
   padding: 0;
   position: absolute;
   top: 10%;
-  left: 10%;
+  left: 0%;
   overflow-y: auto;
   color: #cc0000;
+}
+
+.itemPageContainer.episodeList .episodes::-webkit-scrollbar {
+  display: none;
 }
 
 .itemPageContainer.episodeList .episodes .listItem {
@@ -456,5 +460,15 @@
 }
 
 .itemPageContainer.episodeList .episodes .listItem .listItemBody .secondary {
+  display: none;
+}
+
+/* Episode */
+.itemPageContainer.episode .peopleSection {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.itemPageContainer.episode .peopleSection::-webkit-scrollbar {
   display: none;
 }
