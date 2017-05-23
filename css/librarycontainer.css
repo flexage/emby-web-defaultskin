@@ -65,3 +65,17 @@
 .libraryContainer .panel-right .itemScrollFrame .viewContentArea .cardColumn .card .cardImageContainer {
   height: 350px;
 }
+
+.libraryContainer .horizontalSection {
+  display: block;
+}
+
+
+/* Upcoming TV */
+.libraryContainer.upcoming .card {
+  height: auto !important;
+}
+
+.libraryContainer.upcoming .cardImageContainer {
+  height: 141px !important;
+}

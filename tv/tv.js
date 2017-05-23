@@ -130,6 +130,8 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
 
         function renderUpcoming(page, pageParams, autoFocus, scroller, resolve) {
 
+            page.querySelector('.libraryContainer').classList.add('upcoming');
+
             self.listController = new horizontalList({
                 itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
@@ -145,9 +147,9 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
                 },
                 autoFocus: autoFocus,
                 cardOptions: {
-                    shape: 'backdrop',
+                    shape: 'primary',
                     rows: 1,
-                    preferThumb: true,
+                    preferThumb: false,
                     indexBy: 'PremiereDate',
                     scalable: false
                 },
