@@ -182,13 +182,17 @@ define(['connectionManager', 'imageLoader', 'loading', 'scroller', './focushandl
 
             html += '<div class="textInfo">';
             html += '<h1 class="name">' + item.Name + '</h1>';
-            html += '<h1 class="year">' + item.ProductionYear + '</h1>';
 
+            if(item.ProductionYear){
+                html += '<h1 class="year">' + item.ProductionYear + '</h1>';
+            }
             if(item.Genres.length > 0){
                 html += '<h2 class="genres">' + item.Genres.join(' / ') + '</h2>';
             }
 
-            html += '<p class="overview">' + item.Overview + '</p>';
+            if(item.Overview){
+                html += '<p class="overview">' + item.Overview + '</p>';
+            }
             html += '</div>';
             if(item.CommunityRating) {
                 html += '<div class="communityRating"><span class="rating">' + item.CommunityRating + '</span><span divider>/</span>10</div>';

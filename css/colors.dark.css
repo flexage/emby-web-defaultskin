@@ -3,14 +3,14 @@ html {
 }
 
 a {
-    color: #52B54B;
+    color: #167996 !important;
     outline: none !important;
     display: inline-block;
     transition: all .15s ease-out;
 }
 
     a:focus {
-        background: #52B54B;
+        background: #167996 !important;
         color: #fff;
         transform: scale(3);
         padding-left: .3em;
@@ -56,7 +56,7 @@ a {
 }
 
 .emby-button:focus:not(.btnUserViewHeader) {
-    background: #52B54B;
+    background: #167996 !important;
     color: #fff;
 }
 
@@ -65,13 +65,13 @@ a {
 }
 
 .card:focus:not(.card-round) .cardBox {
-    /*border-color: #52B54B;*/
-    border-width: 0;
-    border-color: rgba(0, 0, 0, 0);
+    border-color: #167996 !important;
+    /*border-width: 0;
+    border-color: rgba(0, 0, 0, 0);*/
 }
 
 .card[data-cardtype='embyconnect'] .cardImageContainer {
-    background-color: #52B54B;
+    background-color: #167996 !important;
 }
 
 .headerBackButton {
@@ -105,7 +105,7 @@ a {
 }
 
 .userViewNames button.selected h3 {
-  background-color: #167996;
+  background-color: #167996 !important;
 }
 
 .userViewNames button.selected h3 i {

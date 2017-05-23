@@ -1340,7 +1340,7 @@ define(['itemContextMenu', 'scroller', 'loading', './../skininfo', 'datetime', '
             }
 
             //return text;
-            var html = '<button style="margin:0;padding:0;text-transform:none;font-weight:normal;" ' + itemShortcuts.getShortcutAttributesHtml(item) + ' type="button" is="emby-button" class="itemAction button-flat" data-action="link">';
+            var html = '<button style="margin:0;padding:0;text-transform:none;font-weight:300;" ' + itemShortcuts.getShortcutAttributesHtml(item) + ' type="button" is="emby-button" class="itemAction button-flat" data-action="link">';
             html += getHeadingText(text);
             html += '</button>';
 
@@ -1597,6 +1597,7 @@ define(['itemContextMenu', 'scroller', 'loading', './../skininfo', 'datetime', '
                         var itemScrollFrame = view.querySelector('.itemScrollFrame');
 
                         if (enableTrackList(item) || item.Type === 'MusicArtist') {
+                            view.querySelector('.itemPageContainer').classList.add('music');
                             mainSection.classList.remove('focusable');
                             itemScrollFrame.classList.add('clippedLeft');
                             view.querySelector('.itemPageFixedLeft').classList.remove('hide');

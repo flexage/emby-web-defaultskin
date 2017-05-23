@@ -79,3 +79,11 @@
 .libraryContainer.upcoming .cardImageContainer {
   height: 141px !important;
 }
+
+.libraryContainer.music .card {
+  height: auto !important;
+}
+
+.libraryContainer.music .cardImageContainer {
+  height: 256.25px !important;
+}

@@ -125,7 +125,10 @@ define(['playbackManager', 'pluginManager', 'browser', 'connectionManager', 'eve
             routes.push({
                 path: 'music/music.html',
                 transition: 'slide',
-                controller: self.id + '/music/music'
+                controller: self.id + '/music/music',
+                dependencies: [
+                  'css!' + pluginManager.mapPath(self, 'css/librarycontainer')
+                ]
             });
 
             routes.push({

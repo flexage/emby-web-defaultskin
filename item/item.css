@@ -63,7 +63,7 @@
 }
 
 .bulletSeparator {
-    color: #52B54B;
+    color: #167996 !important;
     margin: 0 .35em;
 }
 
@@ -443,7 +443,7 @@
 .itemPageContainer.episodeList .episodes .listItem:focus {
   background: rgba(0, 0, 0, 0.4) !important;
   border-radius: 0;
-  border: 2px solid #167996;
+  border: 2px solid #167996 !important;
 }
 
 .itemPageContainer.episodeList .episodes .listItem .listItemImage {
@@ -471,4 +471,71 @@
 
 .itemPageContainer.episode .peopleSection::-webkit-scrollbar {
   display: none;
+}
+
+/* Music */
+.itemPageContainer.music .overview,
+.itemPageContainer.music .peopleSection,
+.itemPageContainer.music .mediaInfoPrimary,
+.itemPageContainer.music .genres,
+.itemPageContainer.music .itemPageButtonsContainer {
+  display: none;
+}
+
+.itemPageContainer.music .detailImage {
+  position: absolute;
+  top: 0vh;
+  left: 3vw;
+  max-height: 78vh;
+  max-width: 29vw;
+}
+
+.itemPageContainer.music .itemPageButtons {
+  position: absolute;
+  top: 60vh;
+  left: 10vw;
+  width: 15vw;
+}
+
+.itemPageContainer.music .itemPageUserDataIcons {
+  position: absolute;
+  top: 78vh;
+  left: 10vw;
+  width: 15vw;
+}
+
+.itemPageContainer.music .childrenSection {
+  display: block;
+  width: 60vw;
+  height: 82vh;
+  position: absolute;
+  top: 10vh;
+  left: 2vw;
+  overflow-y: auto;
+}
+
+.itemPageContainer.music .childrenSection .portraitCard-scalable {
+  display: block;
+  width: 25%;
+  padding: 0 !important;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.itemPageContainer.music .trackList {
+  margin: 4em 0 -4em;
+}
+
+.itemPageContainer.music .trackList .listItem,
+.itemPageContainer.music .trackList .listItem-shaded {
+  background: none;
+}
+
+.itemPageContainer.music .trackList .listItem:focus {
+  background-color: #167996 !important;
+  border-radius: 0;
+}
+
+.itemPageContainer.music .trackList .listItem .listItemBody {
+  padding: 1vh 2vw;
 }

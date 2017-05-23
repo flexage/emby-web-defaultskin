@@ -1,4 +1,4 @@
-define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../components/horizontallist', './../components/focushandler', './../components/tabbedpage', 'backdrop', 'focusManager', 'emby-itemscontainer'], function (loading, skinInfo, alphaPicker, cardBuilder, horizontalList, focusHandler, tabbedPage, backdrop, focusManager) {
+define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../components/verticallist', './../components/focushandler', './../components/tabbedpagelibrary', 'backdrop', 'focusManager', 'emby-itemscontainer'], function (loading, skinInfo, alphaPicker, cardBuilder, horizontalList, focusHandler, tabbedPage, backdrop, focusManager) {
     'use strict';
 
     return function (view, params) {
@@ -33,13 +33,13 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
 
         function renderTabs(view, initialTabId, pageInstance, params) {
 
-            self.alphaPicker = new alphaPicker({
-                element: view.querySelector('.alphaPicker'),
-                itemsContainer: view.querySelector('.contentScrollSlider'),
-                itemClass: 'card'
-            });
-
-            self.alphaPicker.visible(false);
+            // self.alphaPicker = new alphaPicker({
+            //     element: view.querySelector('.alphaPicker'),
+            //     itemsContainer: view.querySelector('.contentScrollSlider'),
+            //     itemClass: 'card'
+            // });
+            //
+            // self.alphaPicker.visible(false);
 
             var tabs = [
                 {
@@ -106,7 +106,7 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
 
                 var showAlphaPicker = false;
 
-                var contentScrollSlider = page.querySelector('.contentScrollSlider');
+                var contentScrollSlider = page.querySelector('.viewContentArea');
                 contentScrollSlider.removeEventListener('click', onMusicGenresContainerClick);
 
                 switch (id) {
@@ -150,7 +150,7 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
         function renderGenres(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.genres({
                         StartIndex: startIndex,
@@ -163,9 +163,9 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
                 cardOptions: {
                     shape: 'auto',
                     rows: {
-                        portrait: 2,
-                        square: 3,
-                        backdrop: 3
+                        portrait: 1,
+                        square: 1,
+                        backdrop: 1
                     },
                     action: 'none',
                     scalable: false,
@@ -223,7 +223,7 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
         function renderPlaylists(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.playlists({
                         StartIndex: startIndex,
@@ -249,9 +249,9 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
                     overlayText: true,
                     showTitle: true,
                     rows: {
-                        portrait: 2,
-                        square: 3,
-                        backdrop: 3
+                        portrait: 1,
+                        square: 1,
+                        backdrop: 1
                     },
                     scalable: false
                 }
@@ -263,7 +263,7 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
         function renderAlbums(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.items({
                         StartIndex: startIndex,
@@ -304,7 +304,7 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
         function renderSongs(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.items({
                         StartIndex: startIndex,
@@ -344,7 +344,7 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
         function renderArtists(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.artists({
                         StartIndex: startIndex,
@@ -385,7 +385,7 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
         function renderAlbumArtists(page, pageParams, autoFocus, scroller, resolve) {
 
             self.listController = new horizontalList({
-                itemsContainer: page.querySelector('.contentScrollSlider'),
+                itemsContainer: page.querySelector('.viewContentArea'),
                 getItemsMethod: function (startIndex, limit) {
                     return Emby.Models.albumArtists({
                         StartIndex: startIndex,
@@ -403,9 +403,9 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
                     overlayText: true,
                     showTitle: true,
                     rows: {
-                        portrait: 2,
-                        square: 3,
-                        backdrop: 3
+                        portrait: 1,
+                        square: 1,
+                        backdrop: 1
                     },
                     scalable: false
                 },
@@ -426,7 +426,7 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
         function renderFavorites(page, pageParams, autoFocus, scroller, resolve) {
 
             require(['text!' + Emby.PluginManager.mapPath(skinInfo.id, 'music/views.favorites.html')], function (html) {
-                var parent = page.querySelector('.contentScrollSlider');
+                var parent = page.querySelector('.viewContentArea');
                 parent.innerHTML = Globalize.translateDocument(html, skinInfo.id);
                 loadFavoriteArtists(parent, pageParams, autoFocus, resolve);
                 loadFavoriteAlbums(parent, pageParams);
@@ -461,9 +461,9 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
                     itemsContainer: section.querySelector('.itemsContainer'),
                     shape: 'auto',
                     rows: {
-                        portrait: 2,
-                        square: 3,
-                        backdrop: 3
+                        portrait: 1,
+                        square: 1,
+                        backdrop: 1
                     },
                     scalable: false
                 });
@@ -500,12 +500,12 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
                 }
 
                 cardBuilder.buildCards(result.Items, {
-                    itemsContainer: section.querySelector('.itemsContainer'),
+                    itemsContainer: section.querySelector('.viewContentArea'),
                     shape: 'auto',
                     rows: {
-                        portrait: 2,
-                        square: 3,
-                        backdrop: 3
+                        portrait: 1,
+                        square: 1,
+                        backdrop: 1
                     },
                     scalable: false
                 });
