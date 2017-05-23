@@ -10,6 +10,14 @@
   height: 100vh;
 }
 
+.libraryContainer .panel-left .primary {
+  height: 225px;
+  margin-top: 3vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 .libraryContainer .panel-left .itemInfo {
   padding: 0 1vw;
 }
@@ -19,7 +27,7 @@
 }
 
 .libraryContainer .panel-left .itemInfo .textInfo .overview {
-  max-height: 44vh;
+  max-height: 22vh;
   overflow: auto;
 }
 
@@ -80,10 +88,20 @@
   height: 141px !important;
 }
 
+/* Music */
 .libraryContainer.music .card {
   height: auto !important;
 }
 
 .libraryContainer.music .cardImageContainer {
   height: 256.25px !important;
+}
+
+/* List */
+.libraryContainer.list .card {
+  height: auto !important;
+}
+
+.libraryContainer.list .cardImageContainer {
+  height: 144px !important;
 }

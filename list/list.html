@@ -1,4 +1,4 @@
-<div class="pageContainer flex horizontalPageContent listPageContent flex-direction-column">
+<!-- <div class="pageContainer flex horizontalPageContent listPageContent flex-direction-column">
 
     <div class="listPageButtons hide">
         <button is="emby-button" class="btnPlay raised">
@@ -30,4 +30,58 @@
         <span class="listNumbersDivider">|</span>
         <span class="listCount"></span>
     </div>
+</div> -->
+
+<div class="libraryContainer list">
+  <div class="panel-left">
+    <div class="userViewNames" style="display: none;"></div>
+
+    <div class="selectedItemInfo"></div>
+
+    <div class="itemInfo">
+      <div class="overview"></div>
+    </div>
+
+    <div class="listPageButtons hide">
+        <button is="emby-button" class="btnPlay raised">
+            <i class="md-icon">&#xE037;</i>
+            <span>${PlayAll}</span>
+        </button>
+        <button is="emby-button" class="btnQueue raised">
+            <i class="md-icon">&#xE03C;</i>
+            <span>${Queue}</span>
+        </button>
+        <button is="emby-button" class="btnShuffle raised">
+            <i class="md-icon">&#xE043;</i>
+            <span>${Shuffle}</span>
+        </button>
+        <button is="emby-button" class="btnInstantMix raised ">
+            <i class="md-icon">&#xE043;</i>
+            <span>${InstantMix}</span>
+        </button>
+    </div>
+
+    <div class="listNumbers hide">
+      <span class="selectedIndex"></span>
+      <span class="listNumbersDivider">|</span>
+      <span class="listCount"></span>
+    </div>
+  </div>
+
+  <div class="panel-right">
+    <div class="scrollFrame scrollFrameY itemScrollFrame">
+      <div class="viewContentArea">
+
+      </div>
+    </div>
+
+    <!-- <div class="pageContainer flex horizontalPageContent">
+      <div class="alphaPicker"></div>
+
+      <div class="scrollFrame scrollFrameY itemScrollFrame topPadded" style="white-space: nowrap;">
+          <div is="emby-itemscontainer" class="scrollSlider contentScrollSlider">
+          </div>
+      </div>
+    </div> -->
+  </div>
 </div>

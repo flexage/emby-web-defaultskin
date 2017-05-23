@@ -118,7 +118,8 @@ define(['playbackManager', 'pluginManager', 'browser', 'connectionManager', 'eve
                 dependencies: [
                     'cardStyle',
                     'emby-button',
-                    icons
+                    icons,
+                    'css!' + pluginManager.mapPath(self, 'css/librarycontainer')
                 ]
             });
 

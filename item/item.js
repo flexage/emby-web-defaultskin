@@ -396,6 +396,7 @@ define(['itemContextMenu', 'scroller', 'loading', './../skininfo', 'datetime', '
             }
 
             if (item.IsFolder) {
+                // view.querySelector('.itemPageContainer').classList.add('list');
 
                 view.querySelector('.itemPageFixedLeft .btnPlayText').innerHTML = globalize.translate("PlayAll");
                 view.querySelector('.mainSection .btnPlayText').innerHTML = globalize.translate("PlayAll");

@@ -539,3 +539,52 @@
 .itemPageContainer.music .trackList .listItem .listItemBody {
   padding: 1vh 2vw;
 }
+
+/* List */
+/*.itemPageContainer.list .overview,
+.itemPageContainer.list .peopleSection,
+.itemPageContainer.list .mediaInfoPrimary,
+.itemPageContainer.list .genres,
+.itemPageContainer.list .itemPageButtonsContainer {
+  display: none;
+}
+
+.itemPageContainer.list .detailImage {
+  position: absolute;
+  top: 0vh;
+  left: 3vw;
+  max-height: 78vh;
+  max-width: 29vw;
+}
+
+.itemPageContainer.list .itemPageButtons {
+  position: absolute;
+  top: 60vh;
+  left: 10vw;
+  width: 15vw;
+}
+
+.itemPageContainer.list .itemPageUserDataIcons {
+  position: absolute;
+  top: 78vh;
+  left: 10vw;
+  width: 15vw;
+}
+
+.itemPageContainer.list .childrenSection {
+  display: block;
+  width: 60vw;
+  height: 82vh;
+  position: absolute;
+  top: 10vh;
+  left: 2vw;
+  overflow-y: auto;
+}
+
+.itemPageContainer.list .childrenSection .portraitCard-scalable {
+  display: block;
+  width: 25%;
+  padding: 0 !important;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.4);
+}*/
