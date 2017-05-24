@@ -87,6 +87,9 @@ define(['connectionManager', 'loading', 'scroller', './focushandler', 'focusMana
                 	case 'tvshows':
                 	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'tv/tv.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
                 	    break;
+                  case 'livetv':
+                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'livetv/guide.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
+                	    break;
                 	case 'music':
                 	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'music/music.html?tab=albumartists&parentid=' + viewId));
                 	    break;
