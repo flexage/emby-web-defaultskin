@@ -36,3 +36,64 @@
     width: 22vh;
     flex-shrink: 0;
 }
+
+/* Overrides */
+.guidePageContainer {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0;
+  margin-top: 10vh;
+  left: 0;
+}
+
+.guide-date-tab-button.emby-tab-button-active {
+  color: #167996 !important;
+}
+
+.guide-date-tab-button.emby-button-tv:focus {
+  background-color: #167996 !important;
+}
+
+.currentTimeIndicatorBar {
+  background-color: #167996 !important;
+}
+
+.currentTimeIndicatorArrow {
+  color: #167996 !important;
+}
+
+.channelHeaderCell-tv {
+  background-color: transparent !important;
+}
+
+.channelHeaderCell-tv, .channelPrograms-tv {
+  height: 2.1em !important;
+}
+
+.programCellInner {
+  border-radius: 0 !important;
+  background-color: #555 !important;
+}
+
+.channelHeaderCell:focus, .programCell:focus>.programCellInner {
+  background-color: #167996 !important;
+}
+
+.guideProgramNameText {
+  font-weight: 100 !important;
+}
+
+.guideProgramSecondaryInfo {
+  display: inline-block !important;
+  margin: 0 0 0 0.3em !important;
+  padding: 0 !important;
+  vertical-align: 0.05em !important;
+}
+
+.guideProgramSecondaryInfo .guideProgramIndicator {
+  margin: 0 !important;
+  padding: 0 0.15em !important;
+}
+
+.guideProgramIndicator, .newTvProgram {
+  background-color: #167996 !important;
+}

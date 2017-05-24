@@ -56,7 +56,7 @@ define(['loading', 'scroller', 'playbackManager', 'alphaPicker', './../component
             var viewId = elem.getAttribute('data-id');
             var viewType = elem.getAttribute('data-type');
 
-            if(viewType == 'Folder') {
+            if(viewType == 'Folder' || viewType == 'UserView') {
               Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
             }
             else {
