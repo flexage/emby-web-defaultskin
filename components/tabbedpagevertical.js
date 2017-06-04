@@ -18,7 +18,7 @@ define(['connectionManager', 'loading', 'scroller', './focushandler', 'focusMana
 
         userViewNames.classList.add('smoothScrollY');
         userViewNames.classList.add('focusable');
-        userViewNames.classList.add('focuscontainer-y');
+        // userViewNames.classList.add('focuscontainer-y');
         userViewNames.style.scrollBehavior = 'smooth';
         userViewNames.focus = focusViewSlider;
 

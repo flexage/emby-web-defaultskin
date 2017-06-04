@@ -106,6 +106,14 @@ define(['connectionManager', 'loading', './../components/tabbedpagevertical', 'b
             needsRefresh = true;
         }
 
+        view.querySelector('.userOptions .settings').addEventListener('click', function(e) {
+          Emby.Page.show('settings/settings.html');
+        });
+
+        view.querySelector('.userOptions .power').addEventListener('click', function(e) {
+          Emby.Page.show('settings/settings.html');
+        });
+
         events.on(playbackManager, 'playbackstop', onPlaybackStopped);
 
         view.addEventListener('viewbeforeshow', function (e) {

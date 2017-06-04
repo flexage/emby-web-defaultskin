@@ -104,15 +104,16 @@ a {
   color: #555 !important;
 }
 
-.userViewNames button.selected h3 {
+.userViewNames button:focus h3 {
   background-color: #167996 !important;
 }
 
+.userViewNames button:focus h3 i,
 .userViewNames button.selected h3 i {
   color: #fff !important;
 }
 
-.userViewNames button.selected h3 i {
+.userViewNames button:focus h3 i {
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff !important;
 }
@@ -151,13 +152,6 @@ a {
     color: #bbb !important;
 }
 
-
-/* TODO: Create colour palette */
-.userViewNames button.violet:focus {
-    color: violet !important;
-    opacity: 1;
-}
-
 .userViewNames button:focus .userViewButtonText {
     border-bottom-color: transparent;
 }
@@ -173,4 +167,8 @@ a {
 
 .listItemBody .secondary {
     color: #999 !important;
+}
+
+.itemProgressBarForeground {
+  background-color: #167996 !important;
 }
