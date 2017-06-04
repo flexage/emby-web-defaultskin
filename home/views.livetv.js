@@ -333,12 +333,12 @@ define(['focusManager', './../components/focusHandler', 'scroller', 'cardBuilder
                 // icon: '&#xE064;'
                 icon: '&#xE63A;'
               },
-              {
-                title: Globalize.translate('Scheduled'),
-                link: 'livetv/livetv.html?tab=scheduled&parentid=' + parentId + '&serverId=' + apiClient.serverId(),
-                // icon: '&#xE04A;'
-                icon: 'schedule'
-              },
+              // {
+              //   title: Globalize.translate('Scheduled'),
+              //   link: 'livetv/livetv.html?tab=scheduled&parentid=' + parentId + '&serverId=' + apiClient.serverId(),
+              //   // icon: '&#xE04A;'
+              //   icon: 'schedule'
+              // },
               {
                 title: Globalize.translate('Channels'),
                 link: 'livetv/livetv.html?tab=channels&parentid=' + parentId + '&serverId=' + apiClient.serverId(),

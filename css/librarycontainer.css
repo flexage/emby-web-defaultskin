@@ -105,3 +105,20 @@
 .libraryContainer.list .cardImageContainer {
   height: 144px !important;
 }
+
+/* Live TV */
+.libraryContainer.livetv.channels .card {
+  height: auto !important;
+}
+
+.libraryContainer.livetv.channels .cardImageContainer {
+  height: 256.25px !important;
+}
+
+.libraryContainer.livetv.recordings .card {
+  height: auto !important;
+}
+
+.libraryContainer.livetv.recordings .cardImageContainer {
+  height: 144px !important;
+}

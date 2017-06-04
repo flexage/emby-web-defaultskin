@@ -1,4 +1,4 @@
-define(['loading', 'alphaPicker', './../components/horizontallist', './../components/tabbedpage', 'backdrop', 'connectionManager', 'emby-itemscontainer'], function (loading, alphaPicker, horizontalList, tabbedPage, backdrop, connectionManager) {
+define(['loading', 'alphaPicker', './../components/verticallist', './../components/tabbedpagelibrary', 'backdrop', 'connectionManager', 'emby-itemscontainer'], function (loading, alphaPicker, horizontalList, tabbedPage, backdrop, connectionManager) {
     'use strict';
 
     function renderTabs(view, initialTabId, pageInstance, params) {
@@ -48,12 +48,15 @@ define(['loading', 'alphaPicker', './../components/horizontallist', './../compon
             switch (id) {
 
                 case 'channels':
+                page.querySelector('.libraryContainer').classList.add('channels');
                     renderChannels(page, pageParams, autoFocus, tabbedPage.bodyScroller, resolve);
                     break;
                 case 'recordings':
+                    page.querySelector('.libraryContainer').classList.add('recordings');
                     renderRecordings(page, pageParams, autoFocus, tabbedPage.bodyScroller, resolve);
                     break;
                 case 'scheduled':
+                    page.querySelector('.libraryContainer').classList.add('scheduled');
                     break;
                 default:
                     break;
@@ -65,7 +68,7 @@ define(['loading', 'alphaPicker', './../components/horizontallist', './../compon
 
         self.listController = new horizontalList({
 
-            itemsContainer: page.querySelector('.contentScrollSlider'),
+            itemsContainer: page.querySelector('.viewContentArea'),
             getItemsMethod: function (startIndex, limit) {
 
                 var apiClient = connectionManager.getApiClient(pageParams.serverId);
@@ -73,7 +76,7 @@ define(['loading', 'alphaPicker', './../components/horizontallist', './../compon
                     StartIndex: startIndex,
                     Limit: limit,
                     SortBy: "DateCreated,SortName",
-                    SortOrder: "Descending",
+                    SortOrder: "Ascending",
                     UserId: apiClient.getCurrentUserId(),
                     Fields: "PrimaryImageAspectRatio",
                     ImageTypeLimit: 1
@@ -94,9 +97,9 @@ define(['loading', 'alphaPicker', './../components/horizontallist', './../compon
             cardOptions: {
                 action: 'play',
                 rows: {
-                    portait: 2,
-                    square: 3,
-                    backdrop: 3
+                    portait: 1,
+                    square: 1,
+                    backdrop: 1
                 },
                 scalable: false,
                 overlayText: true,
@@ -113,7 +116,7 @@ define(['loading', 'alphaPicker', './../components/horizontallist', './../compon
 
         self.listController = new horizontalList({
 
-            itemsContainer: page.querySelector('.contentScrollSlider'),
+            itemsContainer: page.querySelector('.viewContentArea'),
             getItemsMethod: function (startIndex, limit) {
                 return Emby.Models.recordings({
                     StartIndex: startIndex,
@@ -136,9 +139,9 @@ define(['loading', 'alphaPicker', './../components/horizontallist', './../compon
             },
             cardOptions: {
                 rows: {
-                    portrait: 2,
-                    square: 3,
-                    backdrop: 3
+                    portrait: 1,
+                    square: 1,
+                    backdrop: 1
                 },
                 scalable: false,
                 showParentTitleOrTitle: true,

@@ -147,6 +147,7 @@ define(['playbackManager', 'pluginManager', 'browser', 'connectionManager', 'eve
                 controller: self.id + '/livetv/livetv',
                 dependencies: [
                     'cardStyle',
+                    'css!' + pluginManager.mapPath(self, 'css/librarycontainer')
                 ]
             });
 
