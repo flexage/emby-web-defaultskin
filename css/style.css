@@ -572,3 +572,89 @@ button.mini {
 .card:focus:not(.card-round) .card-focuscontent {
   border-color: #0f85a5 !important;
 }
+
+
+/* Back Menu */
+.backMenuContent .cardBox {
+  margin: 0 1vw;
+  padding: 0 !important;
+  border: none !important;
+}
+.backMenuContent button.card:focus .cardFooter {
+}
+
+.backMenuContent button.card:focus .cardBox {
+  transform: scale(1.2) !important;
+}
+
+.backMenuContent .cardImageContainer-round {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border: none;
+  background-color: #0f85a5;
+}
+
+.backMenuContent .cardFooter {
+  padding: .5em .3em;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.backMenuContent .cardFooter .cardText{
+  font-weight: 200;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", 'Open Sans', sans-serif;
+}
+
+
+/* Settings Page */
+.settingsVerticalSection > div {
+  display: flex;
+}
+
+.settingsVerticalSection > div button {
+  display:block;
+  max-width: 30%;
+  margin: 1vw;
+  padding: 0;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.settingsVerticalSection > div button:focus {
+  background-color: #0f85a5 !important;
+  outline: none;
+}
+
+.settingsVerticalSection > div button > i {
+  background-color: transparent !important;
+  font-size: 10vh;
+}
+
+.settingsVerticalSection > div button > .listItemBody {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+div[data-type="settings"] .pageContainer {
+  padding-top: 6%;
+}
+
+.emby-select:focus+.emby-select-selectionbar,
+  .mdl-checkbox__input:focus+span+.mdl-checkbox__focus-helper,
+  .mdl-checkbox__input:checked+span+span+.checkboxOutline .mdl-checkbox__tick-outline {
+  background-color: #0f85a5 !important;
+}
+
+.selectLabelFocused {
+  color: #0f85a5 !important;
+}
+
+.mdl-checkbox__input:checked+span+span+.checkboxOutline {
+  border-color: #0f85a5 !important;
+}
+
+
+/* pageTitle */
+.pageTitle {
+  padding-top: 2vh;
+}

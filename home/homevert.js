@@ -113,7 +113,10 @@ define(['connectionManager', 'loading', './../components/tabbedpagevertical', 'b
         view.querySelector('.userOptions .power').addEventListener('click', function(e) {
           var powerOverlay = view.querySelector('.power-overlay');
 
-          powerOverlay.classList.remove('unshow');
+          powerOverlay.style = 'display: block';
+          setTimeout(function() {
+            powerOverlay.classList.remove('unshow');
+          }, 100);
 
           powerOverlay.querySelector('button').focus();
 
@@ -124,11 +127,18 @@ define(['connectionManager', 'loading', './../components/tabbedpagevertical', 'b
               e.preventDefault();
               e.stopPropagation();
               powerOverlay.classList.add('unshow');
+              setTimeout(function () {
+                powerOverlay.style = 'display: none';
+              }, 500);
               view.querySelector('.userOptions .power').focus();
               return false;
             }
           });
 
+        });
+
+        view.querySelector('.fullscreen-video button').addEventListener('click', function(e) {
+          Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'nowplaying/videoosd.html'));
         });
 
         events.on(playbackManager, 'playbackstop', onPlaybackStopped);

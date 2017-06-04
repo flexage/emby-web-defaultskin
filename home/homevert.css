@@ -215,3 +215,31 @@ div[data-type="home"] {
 .power-panel .panel-body button:focus h3 {
   background-color: #0f85a5;
 }
+
+
+/* Full screen video button */
+.transparentDocument .panel-left .userViewNames {
+    max-height: 62vh;
+    overflow: scroll;
+}
+
+.transparentDocument .fullscreen-video {
+  display: block !important;
+}
+
+.fullscreen-video button {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+.fullscreen-video button:focus {
+  background-color: #0f85a5;
+}
+
+.fullscreen-video button i {
+  margin-right: 1vw;
+  font-size: 4vh;
+}
