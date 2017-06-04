@@ -63,7 +63,7 @@
 }
 
 .bulletSeparator {
-    color: #167996 !important;
+    color: #0f85a5 !important;
     margin: 0 .35em;
 }
 
@@ -443,7 +443,7 @@
 .itemPageContainer.episodeList .episodes .listItem:focus {
   background: rgba(0, 0, 0, 0.4) !important;
   border-radius: 0;
-  border: 2px solid #167996 !important;
+  border: 2px solid #0f85a5 !important;
 }
 
 .itemPageContainer.episodeList .episodes .listItem .listItemImage {
@@ -532,7 +532,7 @@
 }
 
 .itemPageContainer.music .trackList .listItem:focus {
-  background-color: #167996 !important;
+  background-color: #0f85a5 !important;
   border-radius: 0;
 }
 

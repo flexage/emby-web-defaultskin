@@ -52,7 +52,7 @@ div[data-type="home"] {
 }
 
 .panel-left .userOptions button:focus i {
-  background-color: #167996 !important;
+  background-color: #0f85a5 !important;
 }
 
 .panel-left .userViewNames {
@@ -106,7 +106,7 @@ div[data-type="home"] {
 
 .tilesContainer > .tile:focus {
   transform: scale(1.05);
-  border: .12em solid #167996;
+  border: .12em solid #0f85a5;
   border-radius: .14em;
   outline: none;
 }

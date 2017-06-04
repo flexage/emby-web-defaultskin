@@ -44,7 +44,7 @@ div.mainAnimatedPage:not([data-type="video-osd"]) {
 }
 
 .headerAudioPlayerButton {
-    color: #167996 !important;
+    color: #0f85a5 !important;
 }
 
 .headerBackButton {
@@ -465,7 +465,7 @@ i.mediaInfoItem {
 }
 
 .repeatActive {
-    color: #167996 !important;
+    color: #0f85a5 !important;
 }
 
 .listItemsMoreButtonContainer {
@@ -565,10 +565,10 @@ button.mini {
 }
 
 .countIndicator, .playedIndicator {
-  background: #167996 !important;
+  background: #0f85a5 !important;
 }
 
 /* Media Item Highlight Colour */
 .card:focus:not(.card-round) .card-focuscontent {
-  border-color: #167996 !important;
+  border-color: #0f85a5 !important;
 }

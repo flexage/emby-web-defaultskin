@@ -46,19 +46,19 @@
 }
 
 .guide-date-tab-button.emby-tab-button-active {
-  color: #167996 !important;
+  color: #0f85a5 !important;
 }
 
 .guide-date-tab-button.emby-button-tv:focus {
-  background-color: #167996 !important;
+  background-color: #0f85a5 !important;
 }
 
 .currentTimeIndicatorBar {
-  background-color: #167996 !important;
+  background-color: #0f85a5 !important;
 }
 
 .currentTimeIndicatorArrow {
-  color: #167996 !important;
+  color: #0f85a5 !important;
 }
 
 .channelHeaderCell-tv {
@@ -75,7 +75,7 @@
 }
 
 .channelHeaderCell:focus, .programCell:focus>.programCellInner {
-  background-color: #167996 !important;
+  background-color: #0f85a5 !important;
 }
 
 .guideProgramNameText {
@@ -95,5 +95,5 @@
 }
 
 .guideProgramIndicator, .newTvProgram {
-  background-color: #167996 !important;
+  background-color: #0f85a5 !important;
 }
