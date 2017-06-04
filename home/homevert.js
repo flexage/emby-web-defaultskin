@@ -111,7 +111,24 @@ define(['connectionManager', 'loading', './../components/tabbedpagevertical', 'b
         });
 
         view.querySelector('.userOptions .power').addEventListener('click', function(e) {
-          Emby.Page.show('settings/settings.html');
+          var powerOverlay = view.querySelector('.power-overlay');
+
+          powerOverlay.classList.remove('unshow');
+
+          powerOverlay.querySelector('button').focus();
+
+          powerOverlay.addEventListener('keydown', function(e) {
+            var charCode = e.charCode || e.keyCode || e.which;
+            console.log('charCode', charCode);
+            if (charCode == 27 || charCode == 8){
+              e.preventDefault();
+              e.stopPropagation();
+              powerOverlay.classList.add('unshow');
+              view.querySelector('.userOptions .power').focus();
+              return false;
+            }
+          });
+
         });
 
         events.on(playbackManager, 'playbackstop', onPlaybackStopped);
