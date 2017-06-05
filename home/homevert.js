@@ -1,4 +1,4 @@
-define(['connectionManager', 'loading', './../components/tabbedpagevertical', 'backdrop', 'focusManager', 'playbackManager', './../skininfo', 'events'], function (connectionManager, loading, tabbedPageVertical, backdrop, focusManager, playbackManager, skinInfo, events) {
+define(['connectionManager', 'apphost', 'loading', './../components/tabbedpagevertical', 'backdrop', 'focusManager', 'playbackManager', './../skininfo', 'events'], function (connectionManager, apphost, loading, tabbedPageVertical, backdrop, focusManager, playbackManager, skinInfo, events) {
     'use strict';
 
     function loadViewHtml(page, parentId, html, viewName, autoFocus, self) {
@@ -110,6 +110,40 @@ define(['connectionManager', 'loading', './../components/tabbedpagevertical', 'b
           Emby.Page.show('settings/settings.html');
         });
 
+        view.querySelector('.userOptions .server').addEventListener('click', function(e) {
+          Emby.Page.showSelectServer();
+        });
+
+
+        // Power Options Menu
+        function getButton(label, icon, option) {
+          return '<button class="power-button" data-option="' + option + '"><h3>' + label + '</h3></button>';
+        }
+
+        var powerOptionsHtml = '';
+
+        if (apphost.supports('exit')) {
+          powerOptionsHtml += getButton(Globalize.translate('Exit'), '&#xE879;', 'exit');
+        }
+
+        if (apphost.supports('sleep')) {
+          powerOptionsHtml += getButton(Globalize.translate('Sleep'), '&#xE426;', 'sleep');
+        }
+
+        if (apphost.supports('shutdown')) {
+          powerOptionsHtml += getButton(Globalize.translate('Shutdown'), '&#xE8AC;', 'shutdown');
+        }
+
+        if (apphost.supports('restart')) {
+          powerOptionsHtml += getButton(Globalize.translate('Restart'), '&#xE5D5;', 'restart');
+        }
+
+        powerOptionsHtml += getButton(Globalize.translate('SelectServer'), '&#xE63E;', 'selectserver');
+
+        powerOptionsHtml += getButton(Globalize.translate('SignOut'), '&#xE897;', 'logout');
+
+        view.querySelector('.power-overlay .panel-body').innerHTML = powerOptionsHtml;
+
         view.querySelector('.userOptions .power').addEventListener('click', function(e) {
           var powerOverlay = view.querySelector('.power-overlay');
 
@@ -122,7 +156,6 @@ define(['connectionManager', 'loading', './../components/tabbedpagevertical', 'b
 
           powerOverlay.addEventListener('keydown', function(e) {
             var charCode = e.charCode || e.keyCode || e.which;
-            console.log('charCode', charCode);
             if (charCode == 27 || charCode == 8){
               e.preventDefault();
               e.stopPropagation();
@@ -134,6 +167,51 @@ define(['connectionManager', 'loading', './../components/tabbedpagevertical', 'b
               return false;
             }
           });
+
+          var powerButtons = powerOverlay.querySelectorAll('button');
+
+
+          for (var i = 0; i < powerButtons.length; i++) {
+            powerButtons[i].addEventListener('click', function (e) {
+
+              var powerMenuButton = parentWithClass(e.target, 'power-button');
+
+              var option = '';
+
+              if (powerMenuButton) {
+                option = powerMenuButton.getAttribute('data-option');
+              }
+
+              switch (option) {
+                  case 'logout':
+                      Emby.App.logout();
+                      break;
+                  case 'home':
+                      Emby.Page.goHome();
+                      break;
+                  case 'exit':
+                      apphost.exit();
+                      break;
+                  case 'sleep':
+                      apphost.sleep();
+                      break;
+                  case 'shutdown':
+                      apphost.shutdown();
+                      break;
+                  case 'restart':
+                      apphost.restart();
+                      break;
+                  case 'settings':
+                      Emby.Page.showSettings();
+                      break;
+                  case 'selectserver':
+                      Emby.Page.showSelectServer();
+                      break;
+                  default:
+                      break;
+              }
+            });
+          }
 
         });
 
