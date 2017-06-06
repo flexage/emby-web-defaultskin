@@ -939,6 +939,11 @@ define(['playbackManager', 'dom', 'inputmanager', 'datetime', 'itemHelper', 'med
             playbackManager.playPause(currentPlayer);
         });
 
+        view.querySelector('.btnStop').addEventListener('click', function () {
+
+            playbackManager.stop(currentPlayer);
+        });
+
         view.querySelector('.btnNextTrack').addEventListener('click', function () {
 
             playbackManager.nextChapter(currentPlayer);
@@ -1076,7 +1081,7 @@ define(['playbackManager', 'dom', 'inputmanager', 'datetime', 'itemHelper', 'med
 
                 playbackManager.stop(player);
 
-                // or 
+                // or
                 //Emby.Page.setTransparency(Emby.TransparencyLevel.Backdrop);
             }
         }
