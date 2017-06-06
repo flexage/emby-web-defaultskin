@@ -1,4 +1,4 @@
-define(['./spotlight', 'scroller', './../components/focusHandler', 'focusManager', 'cardBuilder', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (spotlight, scroller, focusHandler, focusManager, cardBuilder, tile, skinInfo) {
+define(['./spotlight', 'scroller', './../components/focushandler', 'focusManager', 'cardBuilder', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (spotlight, scroller, focusHandler, focusManager, cardBuilder, tile, skinInfo) {
     'use strict';
 
     function loadResume(element, parentId) {

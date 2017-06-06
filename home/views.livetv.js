@@ -1,4 +1,4 @@
-define(['focusManager', './../components/focusHandler', 'scroller', 'cardBuilder', './../components/tile', 'pluginManager', './../skininfo', 'browser', 'emby-itemscontainer'], function (focusManager, focusHandler, scroller, cardBuilder, tile, pluginManager, skinInfo,  browser) {
+define(['focusManager', './../components/focushandler', 'scroller', 'cardBuilder', './../components/tile', 'pluginManager', './../skininfo', 'browser', 'emby-itemscontainer'], function (focusManager, focusHandler, scroller, cardBuilder, tile, pluginManager, skinInfo,  browser) {
     'use strict';
 
     function loadLatestRecordings(element, apiClient) {

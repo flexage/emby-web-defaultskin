@@ -1,4 +1,4 @@
-define(['cardBuilder', 'scroller', './../components/focusHandler', 'pluginManager', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (cardBuilder, scroller, focusHandler, pluginManager, tile, skinInfo) {
+define(['cardBuilder', 'scroller', './../components/focushandler', 'pluginManager', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (cardBuilder, scroller, focusHandler, pluginManager, tile, skinInfo) {
     'use strict';
 
 	function loadLatest(element, parentId) {
