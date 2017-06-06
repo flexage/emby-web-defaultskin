@@ -609,6 +609,7 @@ button.mini {
 /* Settings Page */
 .settingsVerticalSection > div {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .settingsVerticalSection > div button {
