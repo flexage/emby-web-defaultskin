@@ -424,7 +424,6 @@
   top: 10%;
   left: 0%;
   overflow-y: auto;
-  color: #cc0000;
 }
 
 .itemPageContainer.episodeList .episodes::-webkit-scrollbar {
