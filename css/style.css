@@ -659,3 +659,9 @@ div[data-type="settings"] .pageContainer {
 .pageTitle {
   padding-top: 2vh;
 }
+
+
+/* Back Button */
+.paper-icon-button-light:focus {
+  color: #0f85a5;
+}
