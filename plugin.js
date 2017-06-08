@@ -33,7 +33,8 @@ define(['playbackManager', 'pluginManager', 'browser', 'connectionManager', 'eve
             var list = [
                 // Used for the mpaa rating
                 'css!' + pluginManager.mapPath(self, 'css/style'),
-                'css!' + pluginManager.mapPath(self, 'css/colors.dark')
+                'css!' + pluginManager.mapPath(self, 'css/colors.dark'),
+                'css!' + pluginManager.mapPath(self, 'css/themes')
             ];
 
             if (browser.android) {
@@ -567,6 +568,9 @@ define(['playbackManager', 'pluginManager', 'browser', 'connectionManager', 'eve
         }
 
         function onViewShow(e) {
+            require([settingsObjectName], function (skinSettings) {
+                skinSettings.apply();
+            });
 
             if (Emby.Page.canGoBack()) {
                 getBackButton().classList.remove('hide');

@@ -61,12 +61,40 @@ define(['userSettings', './skininfo'], function (userSettings, skininfo) {
             return self.get('otherdetailscenes') === 'true';
         };
 
-        self.apply = function () {
 
-            if (self.dimUnselectedPosters()) {
-                document.body.classList.add('dimunselected');
-            } else {
-                document.body.classList.remove('dimunselected');
+        self.skinColor = function (val) {
+
+            if (val != null) {
+                self.set('skincolor', val.toString());
+            }
+
+            return self.get('skincolor');
+        };
+
+        self.apply = function () {
+            // if (self.dimUnselectedPosters()) {
+            //     document.body.classList.add('dimunselected');
+            // } else {
+            //     document.body.classList.remove('dimunselected');
+            // }
+
+            if (self.skinColor()) {
+              document.body.classList.remove('theme-default');
+              document.body.classList.remove('theme-brown');
+              document.body.classList.remove('theme-charcoal');
+              document.body.classList.remove('theme-chartreuse');
+              document.body.classList.remove('theme-concrete');
+              document.body.classList.remove('theme-gold');
+              document.body.classList.remove('theme-green');
+              document.body.classList.remove('theme-maroon');
+              document.body.classList.remove('theme-midnight');
+              document.body.classList.remove('theme-orange');
+              document.body.classList.remove('theme-pink');
+              document.body.classList.remove('theme-rose');
+              document.body.classList.remove('theme-teal');
+              document.body.classList.remove('theme-violet');
+
+              document.body.classList.add(self.skinColor());
             }
         };
 
