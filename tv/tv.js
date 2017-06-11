@@ -1,4 +1,4 @@
-define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../components/verticallist', 'cardBuilder', './../components/focushandler', './../components/tabbedpagelibrary', 'backdrop', 'focusManager', 'emby-itemscontainer'], function (connectionManager, loading, skinInfo, alphaPicker, horizontalList, cardBuilder, focusHandler, tabbedPage, backdrop, focusManager) {
+define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../components/verticallist', 'cardBuilder', './../components/focushandler', './../components/tabbedpagelibrary', 'backdrop', 'focusManager', 'pluginManager', 'emby-itemscontainer'], function (connectionManager, loading, skinInfo, alphaPicker, horizontalList, cardBuilder, focusHandler, tabbedPage, backdrop, focusManager, pluginManager) {
     'use strict';
 
     return function (view, params) {
@@ -252,7 +252,7 @@ define(['connectionManager', 'loading', './../skininfo', 'alphaPicker', './../co
 
         function renderFavorites(page, pageParams, autoFocus, scroller, resolve) {
 
-            require(['text!' + Emby.PluginManager.mapPath(skinInfo.id, 'tv/views.favorites.html')], function (html) {
+            require(['text!' + pluginManager.mapPath(skinInfo.id, 'tv/views.favorites.html')], function (html) {
                 var parent = page.querySelector('.viewContentArea');
                 parent.innerHTML = Globalize.translateDocument(html, skinInfo.id);
                 loadFavoriteSeries(parent, pageParams, autoFocus, resolve);

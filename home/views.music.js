@@ -350,7 +350,7 @@ define(['cardBuilder', 'scroller', './../components/focushandler', 'pluginManage
             for(var tileEl of tileElems) {
               tileEl.addEventListener('click', function (e) {
                 var el = parentWithClass(e.target, 'tile');
-                Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, el.getAttribute('data-link')));
+                Emby.Page.show(pluginManager.mapRoute(skinInfo.id, el.getAttribute('data-link')));
               });
             }
 

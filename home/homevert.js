@@ -1,4 +1,4 @@
-define(['connectionManager', 'apphost', 'loading', './../components/tabbedpagevertical', 'backdrop', 'focusManager', 'playbackManager', './../skininfo', 'events'], function (connectionManager, apphost, loading, tabbedPageVertical, backdrop, focusManager, playbackManager, skinInfo, events) {
+define(['connectionManager', 'apphost', 'loading', './../components/tabbedpagevertical', 'backdrop', 'focusManager', 'playbackManager', 'pluginManager', './../skininfo', 'events'], function (connectionManager, apphost, loading, tabbedPageVertical, backdrop, focusManager, playbackManager, pluginManager, skinInfo, events) {
     'use strict';
 
     function loadViewHtml(page, parentId, html, viewName, autoFocus, self) {
@@ -216,7 +216,7 @@ define(['connectionManager', 'apphost', 'loading', './../components/tabbedpageve
         });
 
         view.querySelector('.fullscreen-video button').addEventListener('click', function(e) {
-          Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'nowplaying/videoosd.html'));
+          Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'nowplaying/videoosd.html'));
         });
 
         events.on(playbackManager, 'playbackstop', onPlaybackStopped);
@@ -322,7 +322,7 @@ define(['connectionManager', 'apphost', 'loading', './../components/tabbedpageve
                         break;
                 }
 
-                require(['text!' + Emby.PluginManager.mapPath(skinInfo.id, 'home/views.' + viewName + '.html')], function (html) {
+                require(['text!' + pluginManager.mapPath(skinInfo.id, 'home/views.' + viewName + '.html')], function (html) {
 
                     if (!autoFocusTabContent) {
                         var activeElement = document.activeElement;

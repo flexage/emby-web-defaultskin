@@ -1,4 +1,4 @@
-define(['./spotlight', 'scroller', './../components/focushandler', 'focusManager', 'cardBuilder', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (spotlight, scroller, focusHandler, focusManager, cardBuilder, tile, skinInfo) {
+define(['./spotlight', 'scroller', './../components/focushandler', 'focusManager', 'pluginManager', 'cardBuilder', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (spotlight, scroller, focusHandler, focusManager, pluginManager, cardBuilder, tile, skinInfo) {
     'use strict';
 
     function loadResume(element, parentId) {
@@ -317,7 +317,7 @@ define(['./spotlight', 'scroller', './../components/focushandler', 'focusManager
           for(var tileEl of tileElems) {
             tileEl.addEventListener('click', function (e) {
               var el = parentWithClass(e.target, 'tile');
-              Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, el.getAttribute('data-link')));
+              Emby.Page.show(pluginManager.mapRoute(skinInfo.id, el.getAttribute('data-link')));
             });
           }
 
@@ -336,15 +336,15 @@ define(['./spotlight', 'scroller', './../components/focushandler', 'focusManager
         var serverId = apiClient.serverId();
 
         // element.querySelector('.allSeriesCard').addEventListener('click', function () {
-        //     Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'tv/tv.html?parentid=' + parentId + "&serverId=" + serverId));
+        //     Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'tv/tv.html?parentid=' + parentId + "&serverId=" + serverId));
         // });
         //
         // element.querySelector('.tvUpcomingCard').addEventListener('click', function () {
-        //     Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'tv/tv.html?tab=upcoming&parentid=' + parentId + "&serverId=" + serverId));
+        //     Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'tv/tv.html?tab=upcoming&parentid=' + parentId + "&serverId=" + serverId));
         // });
         //
         // element.querySelector('.tvFavoritesCard').addEventListener('click', function () {
-        //     Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'tv/tv.html?tab=favorites&parentid=' + parentId + "&serverId=" + serverId));
+        //     Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'tv/tv.html?tab=favorites&parentid=' + parentId + "&serverId=" + serverId));
         // });
 
         self.destroy = function () {

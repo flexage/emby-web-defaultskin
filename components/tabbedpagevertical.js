@@ -1,4 +1,4 @@
-define(['connectionManager', 'loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper', 'browser', './../skininfo', 'emby-button', 'scrollStyles'], function (connectionManager, loading, scroller, focusHandler, focusManager, scrollHelper, browser, skinInfo) {
+define(['connectionManager', 'loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper', 'pluginManager', 'browser', './../skininfo', 'emby-button', 'scrollStyles'], function (connectionManager, loading, scroller, focusHandler, focusManager, scrollHelper, pluginManager, browser, skinInfo) {
     'use strict';
 
     function focusViewSlider() {
@@ -82,25 +82,25 @@ define(['connectionManager', 'loading', 'scroller', './focushandler', 'focusMana
                 //console.log("viewType:" + viewType);
                 switch(viewType) {
                 	case 'movies':
-                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + viewId));
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + viewId));
                 	    break;
                 	case 'tvshows':
-                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'tv/tv.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'tv/tv.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
                 	    break;
                   case 'livetv':
-                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'livetv/guide.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'livetv/guide.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
                 	    break;
                 	case 'music':
-                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'music/music.html?tab=albumartists&parentid=' + viewId));
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'music/music.html?tab=albumartists&parentid=' + viewId));
                 	    break;
                 	case 'homevideos':
-                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
                 	    break;
                 	case 'folders':
-                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
                 	    break;
                 	default:
-                		Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
+                		Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
                 }
             }
         }, true);

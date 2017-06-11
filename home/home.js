@@ -1,4 +1,4 @@
-define(['connectionManager', 'loading', './../components/tabbedpage', 'backdrop', 'focusManager', 'playbackManager', './../skininfo', 'events'], function (connectionManager, loading, tabbedPage, backdrop, focusManager, playbackManager, skinInfo, events) {
+define(['connectionManager', 'loading', './../components/tabbedpage', 'backdrop', 'focusManager', 'playbackManager', 'pluginManager', './../skininfo', 'events'], function (connectionManager, loading, tabbedPage, backdrop, focusManager, playbackManager, pluginManager, skinInfo, events) {
     'use strict';
 
     function loadViewHtml(page, parentId, html, viewName, autoFocus, self) {
@@ -206,7 +206,7 @@ define(['connectionManager', 'loading', './../components/tabbedpage', 'backdrop'
                         break;
                 }
 
-                require(['text!' + Emby.PluginManager.mapPath(skinInfo.id, 'home/views.' + viewName + '.html')], function (html) {
+                require(['text!' + pluginManager.mapPath(skinInfo.id, 'home/views.' + viewName + '.html')], function (html) {
 
                     if (!autoFocusTabContent) {
                         var activeElement = document.activeElement;

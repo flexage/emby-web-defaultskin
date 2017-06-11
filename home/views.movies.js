@@ -1,4 +1,4 @@
-define(['./spotlight', 'scroller', 'imageLoader', './../components/focushandler', 'focusManager', 'cardBuilder', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (spotlight, scroller, imageLoader, focusHandler, focusManager, cardbuilder, tile, skinInfo) {
+define(['./spotlight', 'scroller', 'imageLoader', './../components/focushandler', 'focusManager', 'pluginManager', 'cardBuilder', './../components/tile', './../skininfo', 'emby-itemscontainer'], function (spotlight, scroller, imageLoader, focusHandler, focusManager, pluginManager, cardbuilder, tile, skinInfo) {
     'use strict';
 
     function loadResume(element, apiClient, parentId) {
@@ -63,7 +63,7 @@ define(['./spotlight', 'scroller', 'imageLoader', './../components/focushandler'
           var elem = parentWithClass(e.target, 'itemAction');
           if (elem) {
             var viewId = elem.getAttribute('data-id');
-            Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'item/item.html?id=' + viewId + '&serverId=' + apiClient.serverId()));
+            Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'item/item.html?id=' + viewId + '&serverId=' + apiClient.serverId()));
           }
         });
       }
@@ -359,13 +359,13 @@ define(['./spotlight', 'scroller', 'imageLoader', './../components/focushandler'
             for(var tileEl of tileElems) {
               tileEl.addEventListener('click', function (e) {
                 var el = parentWithClass(e.target, 'tile');
-                Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, el.getAttribute('data-link')));
+                Emby.Page.show(pluginManager.mapRoute(skinInfo.id, el.getAttribute('data-link')));
               });
             }
 
             // element.querySelectorAll('.tile').addEventListener('click', function (e) {
             //   console.log('tile clicked, e', e);
-            //   //Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + parentId));
+            //   //Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + parentId));
             // });
 
             var promises = [
@@ -385,15 +385,15 @@ define(['./spotlight', 'scroller', 'imageLoader', './../components/focushandler'
         initialiseScrollers();
 
         // element.querySelector('.allMoviesCard').addEventListener('click', function () {
-        //     Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + parentId));
+        //     Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + parentId));
         // });
         //
         // element.querySelector('.movieCollectionsCard').addEventListener('click', function () {
-        //     Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?tab=collections&parentid=' + parentId));
+        //     Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'movies/movies.html?tab=collections&parentid=' + parentId));
         // });
         //
         // element.querySelector('.movieFavoritesCard').addEventListener('click', function () {
-        //     Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?tab=favorites&parentid=' + parentId));
+        //     Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'movies/movies.html?tab=favorites&parentid=' + parentId));
         // });
 
         self.destroy = function () {

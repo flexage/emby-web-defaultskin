@@ -1,4 +1,4 @@
-define(['loading', 'scroller', 'playbackManager', 'alphaPicker', './../components/verticallist', 'focusManager', 'connectionManager', 'imageLoader', './../skininfo', 'emby-itemscontainer'], function (loading, scroller, playbackManager, alphaPicker, horizontalList, focusManager, connectionManager, imageLoader, skinInfo) {
+define(['loading', 'scroller', 'playbackManager', 'alphaPicker', './../components/verticallist', 'focusManager', 'pluginManager', 'connectionManager', 'imageLoader', './../skininfo', 'emby-itemscontainer'], function (loading, scroller, playbackManager, alphaPicker, horizontalList, focusManager, pluginManager, connectionManager, imageLoader, skinInfo) {
     'use strict';
 
     var apiClient = connectionManager.currentApiClient();
@@ -57,10 +57,10 @@ define(['loading', 'scroller', 'playbackManager', 'alphaPicker', './../component
             var viewType = elem.getAttribute('data-type');
 
             if(viewType == 'Folder' || viewType == 'UserView') {
-              Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
+              Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
             }
             else {
-              Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'item/item.html?id=' + viewId + '&serverId=' + apiClient.serverId()));
+              Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'item/item.html?id=' + viewId + '&serverId=' + apiClient.serverId()));
             }
           }
         });

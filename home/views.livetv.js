@@ -355,7 +355,7 @@ define(['focusManager', './../components/focushandler', 'scroller', 'cardBuilder
           for(var tileEl of tileElems) {
             tileEl.addEventListener('click', function (e) {
               var el = parentWithClass(e.target, 'tile');
-              Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, el.getAttribute('data-link')));
+              Emby.Page.show(pluginManager.mapRoute(skinInfo.id, el.getAttribute('data-link')));
             });
           }
 
@@ -407,7 +407,7 @@ define(['focusManager', './../components/focushandler', 'scroller', 'cardBuilder
         initialiseScrollers();
 
         // element.querySelector('.guideCard').addEventListener('click', function () {
-        //     Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'livetv/guide.html'));
+        //     Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'livetv/guide.html'));
         // });
         //
         // element.querySelector('.recordingsCard').addEventListener('click', function () {

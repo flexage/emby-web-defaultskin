@@ -1,4 +1,4 @@
-define(['connectionManager', 'imageLoader', 'loading', 'scroller', './focushandler', 'focusManager', 'scrollHelper', 'browser', './../skininfo', 'emby-button', 'scrollStyles'], function (connectionManager, imageLoader, loading, scroller, focusHandler, focusManager, scrollHelper, browser, skinInfo) {
+define(['connectionManager', 'imageLoader', 'loading', 'scroller', './focushandler', 'focusManager', 'pluginManager', 'scrollHelper', 'browser', './../skininfo', 'emby-button', 'scrollStyles'], function (connectionManager, imageLoader, loading, scroller, focusHandler, focusManager, pluginManager, scrollHelper, browser, skinInfo) {
     'use strict';
 
     var apiClient = connectionManager.currentApiClient();
@@ -84,22 +84,22 @@ define(['connectionManager', 'imageLoader', 'loading', 'scroller', './focushandl
                 //console.log("viewType:" + viewType);
                 switch(viewType) {
                 	case 'movies':
-                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + viewId));
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'movies/movies.html?parentid=' + viewId));
                 	    break;
                 	case 'tvshows':
-                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'tv/tv.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'tv/tv.html?parentid=' + viewId + '&serverId=' + apiClient.serverId()));
                 	    break;
                 	case 'music':
-                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'music/music.html?tab=albumartists&parentid=' + viewId));
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'music/music.html?tab=albumartists&parentid=' + viewId));
                 	    break;
                 	case 'homevideos':
-                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
                 	    break;
                 	case 'folders':
-                	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
                 	    break;
                 	default:
-                		Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
+                		Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
                 }
             }
         }, true);
@@ -135,7 +135,7 @@ define(['connectionManager', 'imageLoader', 'loading', 'scroller', './focushandl
                   var elem = parentWithClass(e.target, 'itemAction');
                   if (elem) {
                     var viewId = elem.getAttribute('data-id');
-              	    Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'item/item.html?id=' + viewId + '&serverId=' + apiClient.serverId()));
+              	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'item/item.html?id=' + viewId + '&serverId=' + apiClient.serverId()));
                   }
                 });
             });

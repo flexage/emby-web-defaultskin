@@ -1,4 +1,4 @@
-define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../components/verticallist', './../components/focushandler', './../components/tabbedpagelibrary', 'backdrop', 'focusManager', 'emby-itemscontainer'], function (loading, skinInfo, alphaPicker, cardBuilder, horizontalList, focusHandler, tabbedPage, backdrop, focusManager) {
+define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../components/verticallist', './../components/focushandler', './../components/tabbedpagelibrary', 'backdrop', 'focusManager', 'pluginManager', 'emby-itemscontainer'], function (loading, skinInfo, alphaPicker, cardBuilder, horizontalList, focusHandler, tabbedPage, backdrop, focusManager, pluginManager) {
     'use strict';
 
     return function (view, params) {
@@ -214,7 +214,7 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
                 e.preventDefault();
                 e.stopPropagation();
 
-                Emby.Page.show(Emby.PluginManager.mapRoute(skinInfo.id, 'list/list.html') + '?parentid=' + parentid + '&genreId=' + value);
+                Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'list/list.html') + '?parentid=' + parentid + '&genreId=' + value);
 
                 return false;
             }
@@ -425,7 +425,7 @@ define(['loading', './../skininfo', 'alphaPicker', 'cardBuilder', './../componen
 
         function renderFavorites(page, pageParams, autoFocus, scroller, resolve) {
 
-            require(['text!' + Emby.PluginManager.mapPath(skinInfo.id, 'music/views.favorites.html')], function (html) {
+            require(['text!' + pluginManager.mapPath(skinInfo.id, 'music/views.favorites.html')], function (html) {
                 var parent = page.querySelector('.viewContentArea');
                 parent.innerHTML = Globalize.translateDocument(html, skinInfo.id);
                 loadFavoriteArtists(parent, pageParams, autoFocus, resolve);
