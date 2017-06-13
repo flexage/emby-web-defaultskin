@@ -1010,6 +1010,7 @@ define(['itemContextMenu', 'scroller', 'loading', './../skininfo', 'datetime', '
 
             } else if (item.Type === "BoxSet") {
                 headerText.innerHTML = globalize.translate('Items');
+                view.querySelector('.itemPageContainer').classList.add('boxset');
                 headerText.classList.remove('hide');
 
             } else if (item.Type === "Episode" && item.SeriesId && item.SeasonId) {
@@ -1026,7 +1027,7 @@ define(['itemContextMenu', 'scroller', 'loading', './../skininfo', 'datetime', '
             var userId = apiClient.getCurrentUserId();
             var fields = "ItemCounts,PrimaryImageAspectRatio,BasicSyncInfo,CanDelete";
             var itemsContainer = section.querySelector('.itemsContainer');
-            var scrollX = false;
+            var scrollX = item.Type === 'BoxSet' ? true : false;
 
             var cardOptions = extendVerticalCardOptions({
                 parentContainer: section,

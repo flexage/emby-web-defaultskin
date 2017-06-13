@@ -106,6 +106,12 @@
   height: 144px !important;
 }
 
+.libraryContainer.list.collections .cardImageContainer {
+  height: 350px !important;
+}
+
+
+
 /* Live TV */
 .libraryContainer.livetv.channels .card {
   height: auto !important;

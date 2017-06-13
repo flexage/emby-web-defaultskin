@@ -115,6 +115,10 @@ define(['loading', 'scroller', 'playbackManager', 'alphaPicker', './../component
 
     function loadChildren(instance, view, item, loading) {
 
+        if(instance.params.type === 'collections') {
+          view.querySelector('.libraryContainer.list').classList.add('collections');
+        }
+
         instance.listController = new horizontalList({
 
             itemsContainer: view.querySelector('.viewContentArea'),
@@ -337,6 +341,29 @@ define(['loading', 'scroller', 'playbackManager', 'alphaPicker', './../component
             //
             // bindSelectedMenuEvents(selectedMenu);
         });
+    }
+
+    function scrollOverview(overviewElement)
+    {
+        var currentPosition = overviewElement.scrollTop;
+        var elementScrollHeight = overviewElement.scrollHeight;
+        var elementClientHeight = overviewElement.clientHeight;
+
+        if(currentPosition >= (elementScrollHeight - elementClientHeight) - 1) {
+            setTimeout(function() {
+                overviewElement.scrollTop = 0;
+                setTimeout(function () {
+                    scrollOverview(overviewElement);
+                }, 3000);
+            }, 4000);
+            return;
+        }
+
+        overviewElement.scrollTop += 1;
+
+        setTimeout(function() {
+            scrollOverview(overviewElement);
+        }, 75);
     }
 
     function getResolutionText(item) {

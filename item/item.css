@@ -377,6 +377,36 @@
   display: none;
 }
 
+/* Boxset */
+.itemPageContainer.boxset .mediaInfoPrimary,
+.itemPageContainer.boxset .childrenSection .sectionTitle {
+  display: none;
+}
+
+.itemPageContainer.boxset .childrenSection {
+  display: block;
+  width: 53vw;
+  height: 41vh;
+  padding: 0!important;
+  position: absolute;
+  top: 10vh;
+  left: 30vw;
+  overflow-y: auto;
+  margin-bottom: 0 !important;
+}
+
+.itemPageContainer.boxset .childrenSection .childrenItemsContainer {
+  padding: 2vh 0 2vh 4% !important;
+}
+
+.itemPageContainer.boxset .childrenSection .portraitCard-scalable {
+  display: block;
+  width: 25%;
+  padding: 0 !important;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
 /* Series */
 .itemPageContainer.seasons .overview,
 .itemPageContainer.seasons .peopleSection,

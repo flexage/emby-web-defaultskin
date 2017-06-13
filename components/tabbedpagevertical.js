@@ -93,6 +93,9 @@ define(['connectionManager', 'loading', 'scroller', './focushandler', 'focusMana
                 	case 'music':
                 	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'music/music.html?tab=albumartists&parentid=' + viewId));
                 	    break;
+                  case 'boxsets':
+                	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId + '&type=collections'));
+                	    break;
                 	case 'homevideos':
                 	    Emby.Page.show(pluginManager.mapRoute(skinInfo.id, 'list/list.html?parentid=' + viewId));
                 	    break;
@@ -163,6 +166,7 @@ define(['connectionManager', 'loading', 'scroller', './focushandler', 'focusMana
         var icons = {};
         icons.default = '&#xE037;';
         icons.movies = '&#xE02C;';
+        icons.boxsets = '&#xE064;';
         icons.tvshows = '&#xE333;';
         icons.livetv = '&#xE639;';
         icons.homevideos = '&#xE3AF;';
